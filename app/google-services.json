@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "946359717592",
+    "project_id": "kcalendar-e6dd1",
+    "storage_bucket": "kcalendar-e6dd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946359717592:android:4b69c582a69de0f86f91ad",
+        "android_client_info": {
+          "package_name": "com.kkwakjavacoding.kcalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946359717592-ch373kmrf3shjtbfl34hb3pgrqpvvtvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVMQXEUM_njMjeYaSoArvq5zfFYAQe3WQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946359717592-ch373kmrf3shjtbfl34hb3pgrqpvvtvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
