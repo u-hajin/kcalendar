@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FoodCustomActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="@drawable/shadow"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/foodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:layout_marginRight="70dp"
+                        android:text="콩국수"
+                        android:textSize="17sp" />
+
+
+
+                    <TextView
+                        android:id="@+id/foodServings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="5dp"
+                        android:text="1인분"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="5dp"
+                        android:text="/"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/foodQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="800g"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="33dp"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="칼로리(kcal)"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/foodKcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="651.57"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="40dp"
+                        android:textSize="16sp"
+                        android:text="탄수화물(g)" />
+
+                    <TextView
+                        android:id="@+id/goalCarbs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="320" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="54dp"
+                        android:textSize="16sp"
+                        android:text="단백질(g)" />
+
+                    <TextView
+                        android:id="@+id/goalProtein"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="320" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="69dp"
+                        android:textSize="16sp"
+                        android:text="지방(g)" />
+
+                    <TextView
+                        android:id="@+id/goalFat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="320" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:layout_marginRight="69dp"
+                        android:textSize="16sp"
+                        android:text="당류(g)" />
+
+                    <TextView
+                        android:id="@+id/goalSugar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="320" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="40dp"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="나트륨(mg)" />
+
+                    <TextView
+                        android:id="@+id/goalSodium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:textSize="16sp"
+                        android:text="320" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/black_green" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:layout_marginHorizontal="10dp"
+            android:text="음식 검색"
+            android:textSize="16sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="@drawable/edge">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/roastCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="구이" />
+
+                    <CheckBox
+                        android:id="@+id/soupCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="국" />
+
+                    <CheckBox
+                        android:id="@+id/kimchiCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="김치" />
+
+                    <CheckBox
+                        android:id="@+id/dessertCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="디저트" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/ricecakeCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="떡" />
+
+                    <CheckBox
+                        android:id="@+id/noddleCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="면" />
+
+                    <CheckBox
+                        android:id="@+id/riceCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="밥" />
+
+                    <CheckBox
+                        android:id="@+id/burgerCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="버거" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <CheckBox
+                        android:id="@+id/stirCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="볶음" />
+
+                    <CheckBox
+                        android:id="@+id/breadCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="빵" />
+
+                    <CheckBox
+                        android:id="@+id/sandwichCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="샌드위치" />
+
+                    <CheckBox
+                        android:id="@+id/dairyCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="유제품" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <CheckBox
+                        android:id="@+id/drinkCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="음료" />
+
+                    <CheckBox
+                        android:id="@+id/pancakeCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="전" />
+
+                    <CheckBox
+                        android:id="@+id/boiledCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="조림" />
+
+                    <CheckBox
+                        android:id="@+id/stewCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="찌개" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <CheckBox
+                        android:id="@+id/steamedCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="찜" />
+
+                    <CheckBox
+                        android:id="@+id/vegetableCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="채소" />
+
+                    <CheckBox
+                        android:id="@+id/chickenCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="치킨" />
+
+                    <CheckBox
+                        android:id="@+id/friedCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="튀김" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <CheckBox
+                        android:id="@+id/pastaCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="파스타" />
+
+                    <CheckBox
+                        android:id="@+id/pizzaCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="피자" />
+                </TableRow>
+            </TableLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/brandSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAlignment="center"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/foodNameSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textAlignment="center"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/black_green" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="섭취량 입력"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/customQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:background="@drawable/edge2"
+                android:hint="섭취량 입력"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:layout_weight="2.5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="염도 입력"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp">
+
+            <RadioButton
+                android:id="@+id/salty1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/pretendard_regular"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="매우 싱겁다" />
+
+            <RadioButton
+                android:id="@+id/salty2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_middle_selector"
+                android:button="@null"
+                android:textAlignment="center"
+                android:text="약간 싱겁다" />
+
+            <RadioButton
+                android:id="@+id/salty3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/pretendard_regular"
+                android:layout_weight="1"
+                android:checked="true"
+                android:background="@drawable/radio_button_middle_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="보통" />
+
+            <RadioButton
+                android:id="@+id/salty4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_middle_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="약간 짜다" />
+
+            <RadioButton
+                android:id="@+id/salty5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_right_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="매우 짜다" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_bold"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="당도 입력"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/sweet1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/pretendard_regular"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="매우 안 달다" />
+
+            <RadioButton
+                android:id="@+id/sweet2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_middle_selector"
+                android:button="@null"
+                android:textAlignment="center"
+                android:text="약간 안 달다" />
+
+            <RadioButton
+                android:id="@+id/sweet3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:background="@drawable/radio_button_middle_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="보통" />
+
+            <RadioButton
+                android:id="@+id/sweet4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_middle_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="약간 달다" />
+
+            <RadioButton
+                android:id="@+id/sweet5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="13sp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_right_selector"
+                android:textAlignment="center"
+                android:button="@null"
+                android:text="매우 달다" />
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/customSaveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:text="저장"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/customCancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:text="취소"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/customSaveBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/customSaveBtn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
