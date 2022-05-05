@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".CalorieCalculateActivity"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_margin="10dp">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <TextView
+        android:id="@+id/textView23"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:fontFamily="@font/pretendard_bold"
+        android:layout_marginHorizontal="10dp"
+        android:text="음식 검색"
+        android:textSize="16sp" />
 
 </LinearLayout>
