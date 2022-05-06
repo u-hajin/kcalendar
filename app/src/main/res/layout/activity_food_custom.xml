@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FoodCustomActivity">
+    tools:context=".activity.FoodCustomActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                         android:text="탄수화물(g)" />
 
                     <TextView
-                        android:id="@+id/goalCarbs"
+                        android:id="@+id/foodCarbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
@@ -148,7 +148,7 @@
                         android:text="단백질(g)" />
 
                     <TextView
-                        android:id="@+id/goalProtein"
+                        android:id="@+id/foodProtein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
@@ -174,7 +174,7 @@
                         android:text="지방(g)" />
 
                     <TextView
-                        android:id="@+id/goalFat"
+                        android:id="@+id/foodFat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
@@ -201,7 +201,7 @@
                         android:text="당류(g)" />
 
                     <TextView
-                        android:id="@+id/goalSugar"
+                        android:id="@+id/foodSugars"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
@@ -228,7 +228,7 @@
                         android:text="나트륨(mg)" />
 
                     <TextView
-                        android:id="@+id/goalSodium"
+                        android:id="@+id/foodSodium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
