@@ -18,7 +18,11 @@ class FoodRepository(private val foodDao:FoodDao) {
         foodDao.deleteFood(food)
     }
 
-    fun searchDatabase(searchQuery: String): Flow<List<Food>> {
-        return foodDao.searchDatabase(searchQuery)
+    fun searchName(searchQuery: String): Flow<List<Food>> {
+        return foodDao.searchName(searchQuery)
+    }
+
+    fun searchClassification(searchQuery: String): Flow<List<Food>> {
+        return foodDao.searchClassification(searchQuery)
     }
 }

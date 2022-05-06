@@ -1,8 +1,9 @@
-package com.kkwakjavacoding.kcalendar
+package com.kkwakjavacoding.kcalendar.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
+import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.adapter.MyViewPageAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityMainBinding
 
