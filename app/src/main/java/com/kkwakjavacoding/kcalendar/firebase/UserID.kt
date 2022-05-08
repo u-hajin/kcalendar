@@ -23,7 +23,7 @@ object UserID {
             "null"
         }
 
-        return encodedWidevineId
+        return encodedWidevineId.replace("/", "")
 
     }
 }
