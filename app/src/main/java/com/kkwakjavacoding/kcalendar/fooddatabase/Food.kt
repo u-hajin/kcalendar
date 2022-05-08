@@ -10,7 +10,6 @@ data class Food(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val location: String,
     val brand: String,
     val classification: String,
     val serving: Double,
