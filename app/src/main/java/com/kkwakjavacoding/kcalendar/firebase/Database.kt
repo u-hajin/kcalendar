@@ -13,7 +13,7 @@ class Database {
     val database = Firebase.database.getReference("userToken").child(id)
 
     fun insertGoal(date: String, nutrition: Nutrition) {
-        database.child(id).child(date).child("goal").setValue(nutrition)
+        database.child(date).child("goal").setValue(nutrition)
     }
 
     fun insertFood(date: String, time: String, food: Food) {
@@ -48,7 +48,16 @@ class Database {
             foods.add(data.iterator().next().key!!)
         }
 
+//        if (foods.isEmpty()) {
+//            // 음식 없음 예외처리 필요
+//        }
+
         return foods
     }
 
+    fun deleteFood(date: String, time: String, name: String) {
+        database.child(date).child(time).child(name).removeValue()
+    }
 }
+
+

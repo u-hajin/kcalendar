@@ -3,7 +3,6 @@ package com.kkwakjavacoding.kcalendar.fooddatabase
 import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 // DB에 직접 접근x, Repository에서 데이터 통신
@@ -43,12 +42,17 @@ class FoodViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun searchDatabase(searchQuery: String): LiveData<List<Food>> {
+        return repository.searchDatabase(searchQuery).asLiveData()
+    }
+
     fun searchName(searchQuery: String): LiveData<List<Food>> {
         return repository.searchName(searchQuery).asLiveData()
     }
 
     fun searchClassification(searchQuery: String): LiveData<List<Food>> {
         return repository.searchClassification(searchQuery).asLiveData()
+
     }
 
 }
