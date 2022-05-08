@@ -21,7 +21,6 @@ interface FoodDao {
     fun readAllData(): Flow<List<Food>>
 
     @Query("SELECT * FROM food_table WHERE name LIKE :searchQuery")
-    
     fun searchName(searchQuery: String): Flow<List<Food>>
 
     @Query("SELECT * FROM food_table WHERE classification LIKE :searchQuery")
