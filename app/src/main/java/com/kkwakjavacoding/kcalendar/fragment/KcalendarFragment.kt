@@ -25,7 +25,7 @@ const val REQUEST_CAMERA = 200
 class KcalendarFragment : Fragment() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
-    private val foods = arrayOf<String>("바나나", "달걀프라이", "햄버거", "피자", "샌드위치")
+    private val foods = arrayOf<String>("바나나", "달걀프라이", "버거", "피자", "샌드위치")
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
 

@@ -114,7 +114,7 @@ class FoodCustomActivity : AppCompatActivity() {
         binding.brandSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 brand = binding.brandSpinner.selectedItem.toString()
-                //getBrandFoodName(it)
+                getBrandFoodName(it)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -134,7 +134,6 @@ class FoodCustomActivity : AppCompatActivity() {
             if (it.isEmpty()) {
                 Toast.makeText(this, "일치하는 이름이 없습니다.", Toast.LENGTH_LONG).show()
             } else {
-                //getBrandFoodName(it)
                 findFirstFood(it)
                 setCheckBox(it)
                 setBrandSpinner(it)
@@ -155,32 +154,31 @@ class FoodCustomActivity : AppCompatActivity() {
         // 제품명 업데이트도 같이 해야됨.
     }
 
-//    private fun getBrandFoodName(it: List<Food>) {
-//        foodNameList = ArrayList()
-//
-//        for (i in it) {
-//
-//            if (i.brand == this.brand) {
-//                foodNameList.add(i.name)
-//                break
-//            }
-//
-//        }
-//        val adapter =
-//            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, foodNameList)
-//
-//        binding.foodNameSpinner.adapter = adapter
-//
-//        binding.foodNameSpinner.onItemSelectedListener =
-//            object : AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//
-//                }
-//
-//                override fun onNothingSelected(p0: AdapterView<*>?) {
-//                }
-//            }
-//    }
+    private fun getBrandFoodName(it: List<Food>) {
+        foodNameList = ArrayList()
+
+        for (i in it) {
+
+            if (i.brand == this.brand) {
+                foodNameList.add(i.name)
+            }
+
+        }
+        val adapter =
+            ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, foodNameList)
+
+        binding.foodNameSpinner.adapter = adapter
+
+        binding.foodNameSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+            }
+    }
 
 
 }
