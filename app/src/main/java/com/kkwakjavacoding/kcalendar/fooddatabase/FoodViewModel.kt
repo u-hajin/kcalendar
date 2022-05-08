@@ -46,4 +46,13 @@ class FoodViewModel(application: Application) : AndroidViewModel(application) {
         return repository.searchDatabase(searchQuery).asLiveData()
     }
 
+    fun searchName(searchQuery: String): LiveData<List<Food>> {
+        return repository.searchName(searchQuery).asLiveData()
+    }
+
+    fun searchClassification(searchQuery: String): LiveData<List<Food>> {
+        return repository.searchClassification(searchQuery).asLiveData()
+
+    }
+
 }

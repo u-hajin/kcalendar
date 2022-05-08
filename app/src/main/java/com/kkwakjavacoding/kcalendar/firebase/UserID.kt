@@ -24,6 +24,5 @@ object UserID {
         }
 
         return encodedWidevineId.replace("/", "")
-
     }
 }
