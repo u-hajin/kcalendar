@@ -13,11 +13,7 @@ class Database {
     val database = Firebase.database.getReference("userToken").child(id)
 
     fun insertGoal(date: String, nutrition: Nutrition) {
-        <<<<<<< HEAD
         database.child(date).child("goal").setValue(nutrition)
-        ====== =
-        database.child(id).child(date).child("goal").setValue(nutrition)
-        >>>>>>> 0ec52af244b9c1af3ba60deef3b3a5b2e7780465
     }
 
     fun insertFood(date: String, time: String, food: Food) {
