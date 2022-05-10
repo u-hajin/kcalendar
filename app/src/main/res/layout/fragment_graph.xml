@@ -93,14 +93,14 @@
         android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pretendard_regular"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
+        android:text="설정 섭취량 / 1일 영양성분 기준치"
         android:textAlignment="textEnd"
-        android:fontFamily="@font/pretendard_regular"
-        android:textSize="15sp"
-        android:text="설정 섭취량 / 1일 영양성분 기준치" />
+        android:textSize="15sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -112,39 +112,39 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="255dp"
-            android:src="@drawable/retangle"
-            android:background="@drawable/shadow"/>
+            android:background="@drawable/shadow"
+            android:src="@drawable/retangle" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
+            android:orientation="vertical"
             android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginRight="30dp"
-                    android:textSize="16sp"
-                    android:text="탄수화물(g)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="탄수화물(g)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/goalCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="320" />
+                    android:text="320"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/carbsPercentage"
@@ -152,49 +152,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="(100%)" />
+                    android:text="(100%)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text=" / " />
+                    android:text=" / "
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/baseCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="324" />
+                    android:text="324"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginRight="44dp"
-                    android:textSize="16sp"
-                    android:text="단백질(g)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="단백질(g)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/goalProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="320" />
+                    android:text="320"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/proteinPercentage"
@@ -202,132 +202,132 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="(100%)" />
+                    android:text="(100%)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text=" / " />
+                    android:text=" / "
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/baseProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="324" />
+                    android:text="324"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginRight="59dp"
-                    android:textSize="16sp"
-                    android:text="지방(g)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="지방(g)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/goalFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="320" />
+                    android:text="320"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/fatPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginLeft="5dp"
-                    android:textSize="16sp"
-                    android:text="(100%)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="(100%)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text=" / " />
+                    android:text=" / "
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/baseFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="324" />
+                    android:text="324"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginRight="59dp"
-                    android:textSize="16sp"
-                    android:text="당류(g)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="당류(g)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/goalSugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="320" />
+                    android:text="320"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/sugarPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
                     android:layout_marginLeft="5dp"
-                    android:textSize="16sp"
-                    android:text="(100%)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="(100%)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text=" / " />
+                    android:text=" / "
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/baseSugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="324" />
+                    android:text="324"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView34"
@@ -335,47 +335,86 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="나트륨(mg)" />
+                    android:text="나트륨(mg)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/goalSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="320" />
+                    android:text="320"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/sodiumPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
                     android:layout_marginLeft="5dp"
-                    android:text="(100%)" />
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="(100%)"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text=" / " />
+                    android:text=" / "
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/baseSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:textSize="16sp"
-                    android:text="324" />
+                    android:text="324"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pretendard_regular"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="10dp"
+        android:text="체중 변화 그래프"
+        android:textAlignment="textEnd"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/shadow"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <Spinner
+            android:id="@+id/monthSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="center" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
 
 </LinearLayout>
