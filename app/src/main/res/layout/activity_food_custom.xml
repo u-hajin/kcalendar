@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/foodCustom"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,49 +23,45 @@
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:background="@drawable/shadow"/>
+                android:background="@drawable/shadow" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
+                android:orientation="vertical"
                 android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/foodName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
                         android:layout_marginRight="70dp"
-                        android:text="콩국수"
+                        android:fontFamily="@font/pretendard_bold"
                         android:textSize="17sp" />
-
 
 
                     <TextView
                         android:id="@+id/foodServings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="5dp"
-                        android:text="1인분"
+                        android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="5dp"
-                        android:text="/"
+                        android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
                     <TextView
@@ -73,7 +70,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:text="800g"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -99,7 +95,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:text="651.57"
                         android:textSize="16sp" />
 
 
@@ -109,25 +104,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="40dp"
-                        android:textSize="16sp"
-                        android:text="탄수화물(g)" />
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="탄수화물(g)"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodCarbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="320" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -135,25 +129,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="54dp"
-                        android:textSize="16sp"
-                        android:text="단백질(g)" />
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="단백질(g)"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodProtein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="320" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -161,26 +154,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="69dp"
-                        android:textSize="16sp"
-                        android:text="지방(g)" />
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="지방(g)"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodFat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="320" />
-
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -188,26 +179,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
                         android:layout_marginRight="69dp"
-                        android:textSize="16sp"
-                        android:text="당류(g)" />
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="당류(g)"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodSugars"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="320" />
-
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -215,8 +204,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView34"
@@ -224,16 +213,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="40dp"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="나트륨(mg)" />
+                        android:text="나트륨(mg)"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodSodium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"
-                        android:textSize="16sp"
-                        android:text="320" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -254,8 +242,8 @@
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_bold"
             android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/pretendard_bold"
             android:text="음식 검색"
             android:textSize="16sp" />
 
@@ -263,8 +251,8 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="10dp"
-            android:padding="5dp"
-            android:background="@drawable/edge">
+            android:background="@drawable/edge"
+            android:padding="5dp">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -280,6 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="구이" />
 
                     <CheckBox
@@ -287,6 +276,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="국" />
 
                     <CheckBox
@@ -294,6 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="김치" />
 
                     <CheckBox
@@ -301,6 +292,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="디저트" />
                 </TableRow>
 
@@ -313,6 +305,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="떡" />
 
                     <CheckBox
@@ -320,6 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="면" />
 
                     <CheckBox
@@ -327,6 +321,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="밥" />
 
                     <CheckBox
@@ -334,19 +329,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="버거" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
                     <CheckBox
                         android:id="@+id/stirCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="볶음" />
 
                     <CheckBox
@@ -354,6 +350,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="빵" />
 
                     <CheckBox
@@ -361,6 +358,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="샌드위치" />
 
                     <CheckBox
@@ -368,18 +366,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="유제품" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <CheckBox
                         android:id="@+id/drinkCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="음료" />
 
                     <CheckBox
@@ -387,6 +387,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="전" />
 
                     <CheckBox
@@ -394,6 +395,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="조림" />
 
                     <CheckBox
@@ -401,18 +403,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="찌개" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <CheckBox
                         android:id="@+id/steamedCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="찜" />
 
                     <CheckBox
@@ -420,6 +424,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="채소" />
 
                     <CheckBox
@@ -427,6 +432,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="치킨" />
 
                     <CheckBox
@@ -434,18 +440,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="튀김" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <CheckBox
                         android:id="@+id/pastaCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="파스타" />
 
                     <CheckBox
@@ -453,6 +461,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="updateBrandSpinner"
                         android:text="피자" />
                 </TableRow>
             </TableLayout>
@@ -470,16 +479,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textAlignment="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textAlignment="center" />
 
             <Spinner
                 android:id="@+id/foodNameSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textAlignment="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <View
@@ -493,9 +502,9 @@
             android:id="@+id/textView26"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_bold"
-            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/pretendard_bold"
             android:text="섭취량 입력"
             android:textSize="16sp" />
 
@@ -503,105 +512,105 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <EditText
                 android:id="@+id/customQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:textAlignment="center"
                 android:background="@drawable/edge2"
                 android:hint="섭취량 입력"
                 android:inputType="textPersonName"
+                android:textAlignment="center"
                 android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/spinner3"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:textAlignment="center"
-                android:layout_weight="2.5" />
+                android:layout_weight="2.5"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView30"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_bold"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/pretendard_bold"
             android:text="염도 입력"
             android:textSize="16sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="10dp">
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/salty1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:fontFamily="@font/pretendard_regular"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_left_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="매우 싱겁다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="매우 싱겁다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/salty2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
+                android:fontFamily="@font/pretendard_regular"
+                android:text="약간 싱겁다"
                 android:textAlignment="center"
-                android:text="약간 싱겁다" />
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/salty3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:fontFamily="@font/pretendard_regular"
                 android:layout_weight="1"
-                android:checked="true"
                 android:background="@drawable/radio_button_middle_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="보통" />
+                android:checked="true"
+                android:fontFamily="@font/pretendard_regular"
+                android:text="보통"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/salty4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_middle_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="약간 짜다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="약간 짜다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/salty5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_right_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="매우 짜다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="매우 짜다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
         </RadioGroup>
 
@@ -609,88 +618,88 @@
             android:id="@+id/textView31"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_bold"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/pretendard_bold"
             android:text="당도 입력"
             android:textSize="16sp" />
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:orientation="horizontal"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/sweet1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:fontFamily="@font/pretendard_regular"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_left_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="매우 안 달다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="매우 안 달다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/sweet2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
+                android:fontFamily="@font/pretendard_regular"
+                android:text="약간 안 달다"
                 android:textAlignment="center"
-                android:text="약간 안 달다" />
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/sweet3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
-                android:checked="true"
                 android:background="@drawable/radio_button_middle_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="보통" />
+                android:checked="true"
+                android:fontFamily="@font/pretendard_regular"
+                android:text="보통"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/sweet4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_middle_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="약간 달다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="약간 달다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
             <RadioButton
                 android:id="@+id/sweet5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_regular"
-                android:textSize="13sp"
                 android:layout_weight="1"
                 android:background="@drawable/radio_button_right_selector"
-                android:textAlignment="center"
                 android:button="@null"
-                android:text="매우 달다" />
+                android:fontFamily="@font/pretendard_regular"
+                android:text="매우 달다"
+                android:textAlignment="center"
+                android:textSize="13sp" />
 
         </RadioGroup>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
             android:padding="10dp">
 
             <Button
