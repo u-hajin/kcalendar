@@ -62,6 +62,7 @@
                         android:layout_gravity="right"
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="1인분"
                         android:textSize="16sp" />
 
                     <TextView
@@ -506,7 +507,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Spinner
                 android:id="@+id/foodNameSpinner"
@@ -543,17 +545,18 @@
 
             <EditText
                 android:id="@+id/customQuantity"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/edge2"
                 android:hint="섭취량 입력"
                 android:inputType="textPersonName"
+                android:text="1.0"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/servingSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="2.5"

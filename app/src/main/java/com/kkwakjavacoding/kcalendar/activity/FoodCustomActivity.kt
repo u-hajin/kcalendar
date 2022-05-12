@@ -1,7 +1,10 @@
 package com.kkwakjavacoding.kcalendar.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +14,9 @@ import com.kkwakjavacoding.kcalendar.fooddatabase.Food
 import com.kkwakjavacoding.kcalendar.fooddatabase.FoodViewModel
 import com.kkwakjavacoding.kcalendar.weightdatabase.WeightViewModel
 import kotlin.math.roundToInt
+
+const val SERVING = "인분"
+const val UNIT = "g"
 
 class FoodCustomActivity : AppCompatActivity() {
 
@@ -23,11 +29,14 @@ class FoodCustomActivity : AppCompatActivity() {
     private var brand: String = ""
     private var brandList: ArrayList<String> = ArrayList()
     private var foodNameList: ArrayList<String> = ArrayList()
+    private val servingList = arrayListOf(SERVING, UNIT)
     private lateinit var brandAdapter: ArrayAdapter<String>
     private lateinit var foodNameAdapter: ArrayAdapter<String>
     private var selected: String = ""
     private var classList: ArrayList<String> = ArrayList()
     private var searchList: List<Food> = listOf()
+    private var serving = SERVING
+    private var quantity: Double = 1.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +47,13 @@ class FoodCustomActivity : AppCompatActivity() {
         // date, time도 intent로 받아야 함.
         predictResult = intent.getStringExtra("result")!!
 
+        setServingSpinner()
+        setServingSpinnerListener()
         setBrandSpinnerListener()
         setFoodNameSpinnerListener()
         buttonListener()
+
+        binding.customQuantity.addTextChangedListener(QuantityWatcher())
 
         foodViewModel = ViewModelProvider(
             this,
@@ -58,6 +71,21 @@ class FoodCustomActivity : AppCompatActivity() {
         binding.foodNameSpinner.adapter = foodNameAdapter
 
         showPredictResult()
+    }
+
+    inner class QuantityWatcher : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun afterTextChanged(p0: Editable?) { // 숫자가 아닌 경우 예외처리 필요
+            if (p0 != null && p0.toString() != "") {
+                quantity = p0.toString().toDouble()
+                customQuantity()
+            }
+        }
     }
 
     private fun getCheckBox() {
@@ -81,7 +109,7 @@ class FoodCustomActivity : AppCompatActivity() {
             binding.chickenCheckBox,
             binding.friedCheckBox,
             binding.pastaCheckBox,
-            binding.pizzaCheckBox,
+            binding.pizzaCheckBox
         )
     }
 
@@ -91,22 +119,25 @@ class FoodCustomActivity : AppCompatActivity() {
                 Toast.makeText(this, "일치하는 음식이 없습니다.", Toast.LENGTH_LONG).show()
             } else {
                 food = it[0].copy()
-                showFoodInfo()
+                showFoodInfo(this.food)
                 setCheckBoxAuto()
                 setBrandSpinnerFirst(it)
             }
         }
     }
 
-    private fun showFoodInfo() {
-        binding.foodName.text = food.name
-        binding.foodQuantity.text = food.serving.roundToInt().toString() + food.unit
-        binding.foodKcal.text = food.kcal.toString()
-        binding.foodCarbs.text = food.carbs.toString()
-        binding.foodProtein.text = food.protein.toString()
-        binding.foodFat.text = food.fat.toString()
-        binding.foodSugars.text = food.sugars.toString()
-        binding.foodSodium.text = food.sodium.toString()
+    private fun showFoodInfo(selectedFood: Food) {
+        binding.apply {
+            foodName.text = selectedFood.name
+            foodServings.text = quantity.toString() + SERVING
+            foodQuantity.text = selectedFood.serving.roundToInt().toString() + selectedFood.unit
+            foodKcal.text = selectedFood.kcal.roundToInt().toString()
+            foodCarbs.text = selectedFood.carbs?.roundToInt().toString()
+            foodProtein.text = selectedFood.protein?.roundToInt().toString()
+            foodFat.text = selectedFood.fat?.roundToInt().toString()
+            foodSugars.text = selectedFood.sugars?.roundToInt().toString()
+            foodSodium.text = selectedFood.sodium?.roundToInt().toString()
+        }
     }
 
     private fun setCheckBoxAuto() { // 인식하고 체크박스 자동 체크
@@ -193,34 +224,67 @@ class FoodCustomActivity : AppCompatActivity() {
     }
 
     private fun matchSelectedFood() {
-//        foodViewModel.searchBrand(brand).observe(this) {
-//            for (i in it) {
-//                if (i.name == selected) {
-//                    food = i
-//                    break
-//                }
-//            }
-//            showFoodInfo()
-//        }
         for (i in searchList) {
             if (i.name == selected) {
                 food = i
                 break
             }
         }
-        showFoodInfo()
+        showFoodInfo(food)
     }
 
     private fun buttonListener() {
         binding.customSaveBtn.setOnClickListener {
             val db = Database()
-//            db.insertFood(intent.getStringExtra("date")!!, intent.getStringExtra("time")!!, food)
-            // 다시 kcalendarActivity로 화면 전환
+            db.insertFood(intent.getStringExtra("date")!!, intent.getStringExtra("time")!!, food)
+            val intent = Intent(this, KcalendarActivity::class.java)
+            startActivity(intent)
         }
 
         binding.customCancelBtn.setOnClickListener {
             finish()
         }
+    }
+
+    private fun setServingSpinner() {
+        val unitAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, servingList)
+        binding.servingSpinner.adapter = unitAdapter
+    }
+
+    private fun setServingSpinnerListener() {
+        binding.servingSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    serving = binding.servingSpinner.selectedItem.toString()
+                    customQuantity()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+            }
+    }
+
+    private fun customQuantity() {
+        if (serving == UNIT) {
+            quantity /= food.serving
+        }
+
+        val customFood = Food(
+            0,
+            food.name,
+            food.classification,
+            food.brand,
+            food.serving.times(quantity),
+            food.unit,
+            food.kcal.times(quantity),
+            food.carbs?.times(quantity),
+            food.protein?.times(quantity),
+            food.fat?.times(quantity),
+            food.sugars?.times(quantity),
+            food.sodium?.times(quantity),
+        )
+        showFoodInfo(customFood)
     }
 
 }
