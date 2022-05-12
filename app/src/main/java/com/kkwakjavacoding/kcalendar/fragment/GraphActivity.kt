@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.kkwakjavacoding.kcalendar.R
 
-class GraphFragment : Fragment() {
+class GraphActivity : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph, container, false)
+        return inflater.inflate(R.layout.activity_graph, container, false)
     }
 
 }

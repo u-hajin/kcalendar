@@ -69,20 +69,18 @@
 
             <Button
                 android:id="@+id/weightInputSaveBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="저장"
                 android:textSize="14sp" />
 
             <Button
                 android:id="@+id/weightInputCancelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1"
                 android:fontFamily="@font/pretendard_bold"
                 android:text="취소"
                 android:textSize="14sp" />
