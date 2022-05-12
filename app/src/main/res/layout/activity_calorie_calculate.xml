@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CalorieCalculateActivity"
+    android:layout_margin="10dp"
     android:orientation="vertical"
-    android:layout_margin="10dp">
+    tools:context=".activity.CalorieCalculateActivity">
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/pretendard_bold"
         android:padding="10dp"
         android:text="권장 칼로리 계산"
-        android:layout_marginTop="20dp"
         android:textSize="20dp" />
-
 
 
     <LinearLayout
@@ -41,13 +40,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
-                android:padding="5dp"
                 android:fontFamily="@font/pretendard_semi_bold"
+                android:padding="5dp"
                 android:text="키(cm):"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/heightInput"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -68,13 +67,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:padding="5dp"
                 android:fontFamily="@font/pretendard_semi_bold"
+                android:padding="5dp"
                 android:text="체중(kg):"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber3"
+                android:id="@+id/weightInput"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -89,68 +88,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:fontFamily="@font/pretendard_bold"
-        android:paddingVertical="5dp"
-        android:paddingHorizontal="10dp"
-        android:text="활동량"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="활동량"
         android:textSize="16sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp">
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/salty1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendard_regular"
             android:layout_weight="1"
             android:background="@drawable/radio_button_left_selector"
-            android:textAlignment="center"
             android:button="@null"
-            android:text="적은 편" />
+            android:fontFamily="@font/pretendard_regular"
+            android:text="적은 편"
+            android:textAlignment="center"
+            android:textSize="13sp" />
 
         <RadioButton
             android:id="@+id/salty2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_regular"
-            android:textSize="13sp"
             android:layout_weight="1"
             android:background="@drawable/radio_button_middle_selector"
             android:button="@null"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="보통"
             android:textAlignment="center"
-            android:text="보통" />
+            android:textSize="13sp" />
 
         <RadioButton
             android:id="@+id/salty3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendard_regular"
             android:layout_weight="1"
-            android:checked="true"
             android:background="@drawable/radio_button_middle_selector"
-            android:textAlignment="center"
             android:button="@null"
-            android:text="보통 이상" />
+            android:checked="true"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="보통 이상"
+            android:textAlignment="center"
+            android:textSize="13sp" />
 
         <RadioButton
             android:id="@+id/salty4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_regular"
-            android:textSize="13sp"
             android:layout_weight="1"
             android:background="@drawable/radio_button_middle_selector"
-            android:textAlignment="center"
             android:button="@null"
-            android:text="많은 편" />
-
+            android:fontFamily="@font/pretendard_regular"
+            android:text="많은 편"
+            android:textAlignment="center"
+            android:textSize="13sp" />
 
 
     </RadioGroup>
@@ -159,9 +157,9 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="5px"
-        android:layout_marginTop="50dp"
         android:layout_marginHorizontal="10dp"
-        android:background="@color/black_green"/>
+        android:layout_marginTop="50dp"
+        android:background="@color/black_green" />
 
     <TextView
         android:id="@+id/textView28"
@@ -171,7 +169,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/pretendard_light"
         android:text="*권장 칼로리는 아래 계산식에 의해 계산됩니다."
-        android:textSize="15dp"/>
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView29"
@@ -181,7 +179,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/pretendard_light"
         android:text="*하루 권장 칼로리 = (키-100) x 0.9 x (활동 지수)"
-        android:textSize="15dp"/>
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/textView30"
@@ -191,13 +189,13 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/pretendard_light"
         android:text="*활동 지수: 적은 편(25), 보통(30), 보통 이상(35), 많은 편(40)"
-        android:textSize="15dp"/>
+        android:textSize="15dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="20dp"
         android:padding="10dp">
 
         <Button
@@ -206,8 +204,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="50dp"
-            android:text="저장"
             android:fontFamily="@font/pretendard_semi_bold"
+            android:text="저장"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -217,14 +215,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="35dp"
+            android:fontFamily="@font/pretendard_semi_bold"
             android:text="취소"
             android:textAlignment="center"
-            android:fontFamily="@font/pretendard_semi_bold"
             app:layout_constraintBottom_toBottomOf="@+id/customSaveBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/customSaveBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </LinearLayout>

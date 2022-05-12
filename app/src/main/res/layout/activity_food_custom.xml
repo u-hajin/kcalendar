@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +32,8 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:paddingHorizontal="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,15 +45,21 @@
                         android:id="@+id/foodName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="70dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_bold"
                         android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
 
                     <TextView
                         android:id="@+id/foodServings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
@@ -60,15 +68,17 @@
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="/"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/foodQuantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -85,15 +95,21 @@
                         android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="33dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="칼로리(kcal)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodKcal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -111,15 +127,21 @@
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="40dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="탄수화물(g)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodCarbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -136,15 +158,21 @@
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="54dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="단백질(g)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodProtein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -161,15 +189,21 @@
                         android:id="@+id/textView24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="69dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="지방(g)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodFat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -186,15 +220,21 @@
                         android:id="@+id/textView29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="69dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="당류(g)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodSugars"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -211,15 +251,21 @@
                         android:id="@+id/textView34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="40dp"
+                        android:layout_gravity="left"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="나트륨(mg)"
                         android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/foodSodium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:textSize="16sp" />
 
@@ -249,7 +295,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:layout_margin="10dp"
             android:background="@drawable/edge"
             android:padding="5dp">
@@ -362,12 +408,12 @@
                         android:text="샌드위치" />
 
                     <CheckBox
-                        android:id="@+id/dairyCheckBox"
+                        android:id="@+id/pastaCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="updateBrandSpinner"
-                        android:text="유제품" />
+                        android:text="파스타" />
                 </TableRow>
 
                 <TableRow
@@ -399,12 +445,12 @@
                         android:text="조림" />
 
                     <CheckBox
-                        android:id="@+id/stewCheckBox"
+                        android:id="@+id/pizzaCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="updateBrandSpinner"
-                        android:text="찌개" />
+                        android:text="피자" />
                 </TableRow>
 
                 <TableRow
@@ -444,26 +490,6 @@
                         android:text="튀김" />
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <CheckBox
-                        android:id="@+id/pastaCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="updateBrandSpinner"
-                        android:text="파스타" />
-
-                    <CheckBox
-                        android:id="@+id/pizzaCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="updateBrandSpinner"
-                        android:text="피자" />
-                </TableRow>
             </TableLayout>
 
         </ScrollView>
