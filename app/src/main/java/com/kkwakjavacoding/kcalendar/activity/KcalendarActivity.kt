@@ -1,4 +1,4 @@
-package com.kkwakjavacoding.kcalendar.fragment
+package com.kkwakjavacoding.kcalendar.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -8,11 +8,8 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.kkwakjavacoding.kcalendar.activity.FoodCustomActivity
-import com.kkwakjavacoding.kcalendar.activity.IMAGE_MEAN
-import com.kkwakjavacoding.kcalendar.activity.IMAGE_STD
-import com.kkwakjavacoding.kcalendar.databinding.FragmentKcalendarBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
@@ -21,39 +18,33 @@ import java.nio.channels.FileChannel
 
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
+const val IMAGE_MEAN = 127.5f
+const val IMAGE_STD = 127.5f
 
-class KcalendarActivity : Fragment() {
+class KcalendarActivity : AppCompatActivity() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
     private val foods = arrayOf<String>("바나나", "달걀프라이", "버거", "피자", "샌드위치")
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
 
-    private var binding: FragmentKcalendarBinding? = null
+    private lateinit var binding: ActivityKcalendarBinding
     private var bitmapImage: Bitmap? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        interpreter = Interpreter(loadModel(), null)
-        binding = FragmentKcalendarBinding.inflate(layoutInflater, container, false)
-        return binding!!.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityKcalendarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        interpreter = Interpreter(loadModel(), null)
+
         binding!!.apply {
             foodAddBtn.setOnClickListener {
                 openGallery()
             }
 
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null // 메모리 누수 방지
     }
 
     private fun openGallery() {
@@ -63,16 +54,15 @@ class KcalendarActivity : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
             bitmapImage =
-                MediaStore.Images.Media.getBitmap(context?.contentResolver, data?.data)
+                MediaStore.Images.Media.getBitmap(contentResolver, data?.data)
             predict()
-            val intent2 = Intent(activity, FoodCustomActivity::class.java)
+            val intent2 = Intent(this, FoodCustomActivity::class.java)
             intent2.putExtra("result", predictResult)
             startActivity(intent2)
         } else if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
