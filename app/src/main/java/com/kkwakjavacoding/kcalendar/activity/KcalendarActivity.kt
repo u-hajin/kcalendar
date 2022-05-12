@@ -5,9 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
 import org.tensorflow.lite.Interpreter
@@ -24,13 +21,17 @@ const val IMAGE_STD = 127.5f
 class KcalendarActivity : AppCompatActivity() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
-    private val foods = arrayOf<String>("바나나", "달걀프라이", "버거", "피자", "샌드위치")
+    private val foods = arrayOf("바나나", "달걀프라이", "버거", "피자", "샌드위치")
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
 
     private lateinit var binding: ActivityKcalendarBinding
     private var bitmapImage: Bitmap? = null
 
+    private var year = 0
+    private var month = 0
+    private var day = 0
+    private var date = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +40,28 @@ class KcalendarActivity : AppCompatActivity() {
 
         interpreter = Interpreter(loadModel(), null)
 
-        binding!!.apply {
+        calendarListener()
+
+        binding.apply {
             foodAddBtn.setOnClickListener {
                 openGallery()
             }
-
         }
+
+    }
+
+    private fun calendarListener() {
+        binding.calendarView.setOnDateChangeListener { _, i, i2, i3 ->
+            year = i
+            month = i2 + 1
+            day = i3
+        }
+    }
+
+    private fun convertDateFormat() {
+        date = ""
+        date += year.toString() + "-" + month.toString().padStart(2, '0') + "-" + day.toString()
+            .padStart(2, '0')
     }
 
     private fun openGallery() {
