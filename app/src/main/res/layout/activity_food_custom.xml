@@ -587,7 +587,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:text="매우 싱겁다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/salty2"
@@ -597,9 +597,9 @@
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="약간 싱겁다"
+                android:text="싱겁다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/salty3"
@@ -612,7 +612,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:text="보통"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/salty4"
@@ -622,9 +622,9 @@
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="약간 짜다"
+                android:text="짜다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/salty5"
@@ -636,7 +636,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:text="매우 짜다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
         </RadioGroup>
 
@@ -666,9 +666,9 @@
                 android:background="@drawable/radio_button_left_selector"
                 android:button="@null"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="매우 안 달다"
+                android:text="매우 달지 않다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/sweet2"
@@ -678,9 +678,9 @@
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="약간 안 달다"
+                android:text="달지 않다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/sweet3"
@@ -693,7 +693,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:text="보통"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/sweet4"
@@ -703,9 +703,9 @@
                 android:background="@drawable/radio_button_middle_selector"
                 android:button="@null"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="약간 달다"
+                android:text="달다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
             <RadioButton
                 android:id="@+id/sweet5"
@@ -717,7 +717,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:text="매우 달다"
                 android:textAlignment="center"
-                android:textSize="13sp" />
+                android:textSize="11sp" />
 
         </RadioGroup>
 
