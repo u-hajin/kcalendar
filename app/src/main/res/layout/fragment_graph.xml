@@ -77,17 +77,75 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/goalKcalText"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/shadow"
-        android:fontFamily="@font/pretendard_semi_bold"
-        android:padding="10dp"
-        android:text="하루 목표 / 권장 칼로리 : 1800 / 1900"
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/shadow"
+            android:src="@drawable/retangle" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="하루 목표 / 권장 칼로리: "
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/goalKcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="/"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/baseKcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView13"
@@ -121,7 +179,8 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,15 +192,21 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
+                    android:layout_gravity="left"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="탄수화물(g)"
                     android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/goalCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="320"
                     android:textSize="16sp" />
@@ -150,6 +215,7 @@
                     android:id="@+id/carbsPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="(100%)"
@@ -159,6 +225,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text=" / "
                     android:textSize="16sp" />
@@ -167,8 +234,9 @@
                     android:id="@+id/baseCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
-                    android:text="324"
+                    android:text="320"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -183,15 +251,21 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="44dp"
+                    android:layout_gravity="left"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="단백질(g)"
                     android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/goalProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="320"
                     android:textSize="16sp" />
@@ -200,6 +274,7 @@
                     android:id="@+id/proteinPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="(100%)"
@@ -209,6 +284,7 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text=" / "
                     android:textSize="16sp" />
@@ -217,6 +293,7 @@
                     android:id="@+id/baseProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="324"
                     android:textSize="16sp" />
@@ -233,15 +310,21 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="59dp"
+                    android:layout_gravity="left"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="지방(g)"
                     android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/goalFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="320"
                     android:textSize="16sp" />
@@ -250,6 +333,7 @@
                     android:id="@+id/fatPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="(100%)"
@@ -259,6 +343,7 @@
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text=" / "
                     android:textSize="16sp" />
@@ -267,6 +352,7 @@
                     android:id="@+id/baseFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="324"
                     android:textSize="16sp" />
@@ -283,15 +369,21 @@
                     android:id="@+id/textView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="59dp"
+                    android:layout_gravity="left"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="당류(g)"
                     android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/goalSugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="320"
                     android:textSize="16sp" />
@@ -300,6 +392,7 @@
                     android:id="@+id/sugarPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="(100%)"
@@ -317,6 +410,7 @@
                     android:id="@+id/baseSugar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="324"
                     android:textSize="16sp" />
@@ -333,15 +427,21 @@
                     android:id="@+id/textView34"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
+                    android:layout_gravity="left"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="나트륨(mg)"
                     android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/goalSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="320"
                     android:textSize="16sp" />
@@ -350,6 +450,7 @@
                     android:id="@+id/sodiumPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="(100%)"
@@ -359,6 +460,7 @@
                     android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text=" / "
                     android:textSize="16sp" />
@@ -367,6 +469,7 @@
                     android:id="@+id/baseSodium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="324"
                     android:textSize="16sp" />
