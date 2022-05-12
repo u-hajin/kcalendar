@@ -10,9 +10,14 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.kkwakjavacoding.kcalendar.databinding.ActivityFoodCustomBinding
 import com.kkwakjavacoding.kcalendar.firebase.Database
+import com.kkwakjavacoding.kcalendar.firebase.Nutrition
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
 import com.kkwakjavacoding.kcalendar.fooddatabase.FoodViewModel
 import com.kkwakjavacoding.kcalendar.weightdatabase.WeightViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.math.roundToInt
 
 const val SERVING = "인분"
@@ -26,6 +31,7 @@ class FoodCustomActivity : AppCompatActivity() {
     private lateinit var weightViewModel: WeightViewModel
     private lateinit var checkBoxList: ArrayList<CheckBox>
     private lateinit var food: Food
+    private lateinit var customFood: Food
     private var brand: String = ""
     private var brandList: ArrayList<String> = ArrayList()
     private var foodNameList: ArrayList<String> = ArrayList()
@@ -53,8 +59,6 @@ class FoodCustomActivity : AppCompatActivity() {
         setFoodNameSpinnerListener()
         buttonListener()
 
-        binding.customQuantity.addTextChangedListener(QuantityWatcher())
-
         foodViewModel = ViewModelProvider(
             this,
             FoodViewModel.Factory(application)
@@ -71,6 +75,8 @@ class FoodCustomActivity : AppCompatActivity() {
         binding.foodNameSpinner.adapter = foodNameAdapter
 
         showPredictResult()
+
+        binding.customQuantity.addTextChangedListener(QuantityWatcher())
     }
 
     inner class QuantityWatcher : TextWatcher {
@@ -89,7 +95,7 @@ class FoodCustomActivity : AppCompatActivity() {
     }
 
     private fun getCheckBox() {
-        checkBoxList = arrayListOf<CheckBox>(
+        checkBoxList = arrayListOf(
             binding.roastCheckBox,
             binding.soupCheckBox,
             binding.kimchiCheckBox,
@@ -119,6 +125,7 @@ class FoodCustomActivity : AppCompatActivity() {
                 Toast.makeText(this, "일치하는 음식이 없습니다.", Toast.LENGTH_LONG).show()
             } else {
                 food = it[0].copy()
+                customFood = it[0].copy()
                 showFoodInfo(this.food)
                 setCheckBoxAuto()
                 setBrandSpinnerFirst(it)
@@ -239,8 +246,19 @@ class FoodCustomActivity : AppCompatActivity() {
 
     private fun buttonListener() {
         binding.customSaveBtn.setOnClickListener {
+            binding.customQuantity.addTextChangedListener(null)
+            food = customFood.copy()
             val db = Database()
             db.insertFood(intent.getStringExtra("date")!!, intent.getStringExtra("time")!!, food)
+
+            MainScope().launch {
+                var total: Nutrition
+                withContext(Dispatchers.Default) {
+                    total = db.getTotal(intent.getStringExtra("date")!!)
+                }
+                total = updateTotal(total).copy()
+                db.insertTotal(intent.getStringExtra("date")!!, total)
+            }
             val intent = Intent(this, KcalendarActivity::class.java)
             startActivity(intent)
         }
@@ -274,7 +292,7 @@ class FoodCustomActivity : AppCompatActivity() {
             quantity /= food.serving
         }
 
-        val customFood = Food(
+        customFood = Food(
             0,
             food.name,
             food.classification,
@@ -289,6 +307,17 @@ class FoodCustomActivity : AppCompatActivity() {
             food.sodium?.times(quantity),
         )
         showFoodInfo(customFood)
+    }
+
+    private fun updateTotal(total: Nutrition): Nutrition {
+        return Nutrition(
+            total.kcal + food.kcal,
+            total.carbs + food.carbs!!,
+            total.carbs + food.protein!!,
+            total.carbs + food.fat!!,
+            total.carbs + food.sugars!!,
+            total.carbs + food.sodium!!
+        )
     }
 
 }

@@ -20,6 +20,10 @@ class Database {
         database.child(date).child(time).child(food.name).setValue(food) // userToken 밑 child 변경 필요.
     }
 
+    fun insertTotal(date: String, nutrition: Nutrition) {
+        database.child(date).child("total").setValue(nutrition)
+    }
+
     suspend fun getGoal(date: String): HashMap<String, Any> {
         var goal: HashMap<String, Any> = HashMap()
         val task: Task<DataSnapshot> = database.child(date).get()
@@ -35,6 +39,36 @@ class Database {
         }
 
         return goal
+    }
+
+    suspend fun getTotal(date: String): Nutrition {
+        var totalMap: HashMap<String, Double> = HashMap()
+        val task: Task<DataSnapshot> = database.child(date).get()
+        val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
+        val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
+
+        while (data.iterator().hasNext()) {
+            var snapshot = data.iterator().next()
+
+            if (snapshot.key.toString() == "total") {
+                totalMap = snapshot.value as HashMap<String, Double>
+            }
+        }
+
+        var total: Nutrition = if (totalMap.isEmpty()) {
+            Nutrition(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        } else {
+            Nutrition(
+                totalMap["kcal"]!!,
+                totalMap["carbs"]!!,
+                totalMap["protein"]!!,
+                totalMap["fat"]!!,
+                totalMap["sugars"]!!,
+                totalMap["sodium"]!!
+            )
+        }
+
+        return total
     }
 
     suspend fun getFoodName(date: String, time: String): ArrayList<String> {

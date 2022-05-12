@@ -613,7 +613,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/left_round"
+                        android:background="@drawable/left_round_selected"
                         android:fontFamily="@font/pretendard_bold"
                         android:padding="3dp"
                         android:text="아침"
