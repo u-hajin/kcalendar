@@ -119,7 +119,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="1500 / 1800 (kcal)"
+                    android:text="1500"
+                    app:layout_constraintEnd_toStartOf="@id/textView20"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalKcalInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalKcalInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="1800"
+                    app:layout_constraintEnd_toStartOf="@id/kcalText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/kcalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (kcal)"
                     app:layout_constraintEnd_toEndOf="@+id/kcalBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,7 +190,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="275 / 320 (g)"
+                    android:text="275"
+                    app:layout_constraintEnd_toStartOf="@id/textView21"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalCarbsInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalCarbsInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="320"
+                    app:layout_constraintEnd_toStartOf="@id/unitText1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unitText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (g)"
                     app:layout_constraintEnd_toEndOf="@+id/carbsBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -201,7 +261,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="54.6 / 57 (g)"
+                    android:text="54.6"
+                    app:layout_constraintEnd_toStartOf="@id/textView22"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalProteinInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalProteinInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="57"
+                    app:layout_constraintEnd_toStartOf="@id/unitText2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unitText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (g)"
                     app:layout_constraintEnd_toEndOf="@+id/proteinBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -242,7 +332,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="50 / 61 (g)"
+                    android:text="50"
+                    app:layout_constraintEnd_toStartOf="@id/textView23"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalFatInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalFatInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="61"
+                    app:layout_constraintEnd_toStartOf="@id/unitText3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unitText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (g)"
                     app:layout_constraintEnd_toEndOf="@+id/fatBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -283,7 +403,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="95.2 / 90 (g)"
+                    android:text="95.2"
+                    app:layout_constraintEnd_toStartOf="@id/textView24"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalSugarInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalSugarInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="90"
+                    app:layout_constraintEnd_toStartOf="@id/unitText4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unitText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (g)"
                     app:layout_constraintEnd_toEndOf="@+id/sugarBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -324,7 +474,37 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="2264.45 / 2000 (mg)"
+                    android:text="2264.45"
+                    app:layout_constraintEnd_toStartOf="@id/textView25"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" / "
+                    app:layout_constraintEnd_toStartOf="@id/goalSodiumInfo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/goalSodiumInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="2000"
+                    app:layout_constraintEnd_toStartOf="@id/unitText5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unitText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text=" (mg)"
                     app:layout_constraintEnd_toEndOf="@+id/sodiumBar"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
