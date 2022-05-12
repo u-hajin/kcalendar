@@ -17,8 +17,7 @@ class Database {
     }
 
     fun insertFood(date: String, time: String, food: Food) {
-        database.child(date).child(time).child(food.name)
-            .setValue(food) // userToken 밑 child 변경 필요.
+        database.child(date).child(time).child(food.name).setValue(food) // userToken 밑 child 변경 필요.
     }
 
     suspend fun getGoal(date: String): HashMap<String, Any> {
