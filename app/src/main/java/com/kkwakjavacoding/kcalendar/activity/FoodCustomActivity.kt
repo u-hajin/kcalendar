@@ -183,6 +183,10 @@ class FoodCustomActivity : AppCompatActivity() {
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     selected = binding.foodNameSpinner.selectedItem.toString()
+                    quantity = 1.0
+                    serving = SERVING
+                    binding.customQuantity.setText("1.0")
+                    binding.servingSpinner.setSelection(0)
                     matchSelectedFood()
                 }
 
