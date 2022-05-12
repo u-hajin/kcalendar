@@ -22,7 +22,7 @@ import java.nio.channels.FileChannel
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
 
-class KcalendarFragment : Fragment() {
+class KcalendarActivity : Fragment() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
     private val foods = arrayOf<String>("바나나", "달걀프라이", "버거", "피자", "샌드위치")
