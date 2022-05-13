@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.round
 import kotlin.math.roundToInt
 
 const val SERVING = "인분"
@@ -290,6 +291,7 @@ class FoodCustomActivity : AppCompatActivity() {
     private fun customQuantity() {
         if (serving == UNIT) {
             quantity /= food.serving
+            quantity = round(quantity * 100) / 100
         }
 
         customFood = Food(
@@ -313,10 +315,10 @@ class FoodCustomActivity : AppCompatActivity() {
         return Nutrition(
             total.kcal + food.kcal,
             total.carbs + food.carbs!!,
-            total.carbs + food.protein!!,
-            total.carbs + food.fat!!,
-            total.carbs + food.sugars!!,
-            total.carbs + food.sodium!!
+            total.protein + food.protein!!,
+            total.fat + food.fat!!,
+            total.sugars + food.sugars!!,
+            total.sodium + food.sodium!!
         )
     }
 
