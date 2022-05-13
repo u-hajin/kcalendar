@@ -26,4 +26,7 @@ class FoodRepository(private val foodDao: FoodDao) {
         return foodDao.searchClassification(searchQuery)
     }
 
+    fun searchBrand(searchQuery: String): Flow<List<Food>> {
+        return foodDao.searchBrand(searchQuery)
+    }
 }

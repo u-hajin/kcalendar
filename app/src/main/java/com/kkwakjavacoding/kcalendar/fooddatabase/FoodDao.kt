@@ -25,4 +25,7 @@ interface FoodDao {
 
     @Query("SELECT * FROM food_table WHERE classification LIKE :searchQuery")
     fun searchClassification(searchQuery: String): Flow<List<Food>>
+
+    @Query("SELECT * FROM food_table WHERE brand LIKE :searchQuery")
+    fun searchBrand(searchQuery: String): Flow<List<Food>>
 }

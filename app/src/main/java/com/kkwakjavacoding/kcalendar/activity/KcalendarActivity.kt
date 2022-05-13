@@ -1,59 +1,108 @@
-package com.kkwakjavacoding.kcalendar.fragment
+package com.kkwakjavacoding.kcalendar.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.kkwakjavacoding.kcalendar.activity.FoodCustomActivity
-import com.kkwakjavacoding.kcalendar.activity.IMAGE_MEAN
-import com.kkwakjavacoding.kcalendar.activity.IMAGE_STD
-import com.kkwakjavacoding.kcalendar.databinding.FragmentKcalendarBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.kkwakjavacoding.kcalendar.R
+import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.channels.FileChannel
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
+const val IMAGE_MEAN = 127.5f
+const val IMAGE_STD = 127.5f
+const val BREAKFAST = "breakfast"
+const val LUNCH = "lunch"
+const val DINNER = "dinner"
 
-class KcalendarActivity : Fragment() {
+class KcalendarActivity : AppCompatActivity() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
-    private val foods = arrayOf<String>("바나나", "달걀프라이", "버거", "피자", "샌드위치")
+    private val foods = arrayOf("바나나", "달걀프라이", "버거", "피자", "샌드위치")
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
 
-    private var binding: FragmentKcalendarBinding? = null
+    private lateinit var binding: ActivityKcalendarBinding
     private var bitmapImage: Bitmap? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        interpreter = Interpreter(loadModel(), null)
-        binding = FragmentKcalendarBinding.inflate(layoutInflater, container, false)
-        return binding!!.root
-    }
+    private var year = 0
+    private var month = 0
+    private var day = 0
+    private var date = ""
+    private var time = BREAKFAST
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding!!.apply {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityKcalendarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        interpreter = Interpreter(loadModel(), null)
+
+        binding.breakfastBtn.setOnClickListener(ButtonListener())
+        binding.lunchBtn.setOnClickListener(ButtonListener())
+        binding.dinnerBtn.setOnClickListener(ButtonListener())
+
+        calendarListener()
+
+        val currentDate = Calendar.getInstance().time
+        date = SimpleDateFormat("yyyy-MM-dd").format(currentDate)
+
+        binding.apply {
             foodAddBtn.setOnClickListener {
                 openGallery()
             }
+        }
 
+    }
+
+    inner class ButtonListener : View.OnClickListener {
+        override fun onClick(v: View?) {
+            when (v?.id) {
+                binding.breakfastBtn.id -> {
+                    time = BREAKFAST
+                    binding.breakfastBtn.setBackgroundResource(R.drawable.left_round_selected)
+                    binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
+                    binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                }
+                binding.lunchBtn.id -> {
+                    time = LUNCH
+                    binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
+                    binding.lunchBtn.setBackgroundResource(R.color.deep_green)
+                    binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                }
+                binding.dinnerBtn.id -> {
+                    time = DINNER
+                    binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
+                    binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
+                    binding.dinnerBtn.setBackgroundResource(R.drawable.right_round_selected)
+                }
+            }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null // 메모리 누수 방지
+    private fun calendarListener() {
+        binding.calendarView.setOnDateChangeListener { _, i, i2, i3 ->
+            year = i
+            month = i2 + 1
+            day = i3
+            convertDateFormat()
+        }
+    }
+
+    private fun convertDateFormat() {
+        date = ""
+        date += year.toString() + "-" + month.toString().padStart(2, '0') + "-" + day.toString()
+            .padStart(2, '0')
     }
 
     private fun openGallery() {
@@ -63,16 +112,17 @@ class KcalendarActivity : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
             bitmapImage =
-                MediaStore.Images.Media.getBitmap(context?.contentResolver, data?.data)
+                MediaStore.Images.Media.getBitmap(contentResolver, data?.data)
             predict()
-            val intent2 = Intent(activity, FoodCustomActivity::class.java)
+            val intent2 = Intent(this, FoodCustomActivity::class.java)
             intent2.putExtra("result", predictResult)
+            intent2.putExtra("date", date)
+            intent2.putExtra("time", time)
             startActivity(intent2)
         } else if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
