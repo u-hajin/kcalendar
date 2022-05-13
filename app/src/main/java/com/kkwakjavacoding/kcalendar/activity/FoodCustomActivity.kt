@@ -82,8 +82,6 @@ class FoodCustomActivity : AppCompatActivity() {
         binding.foodNameSpinner.adapter = foodNameAdapter
 
         showPredictResult()
-
-        binding.customQuantity.addTextChangedListener(QuantityWatcher())
     }
 
     inner class QuantityWatcher : TextWatcher {
@@ -136,6 +134,7 @@ class FoodCustomActivity : AppCompatActivity() {
                 showFoodInfo(this.food)
                 setCheckBoxAuto()
                 setBrandSpinnerFirst(it)
+                binding.customQuantity.addTextChangedListener(QuantityWatcher())
             }
         }
     }
