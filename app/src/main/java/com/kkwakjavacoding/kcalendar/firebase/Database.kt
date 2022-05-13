@@ -1,5 +1,6 @@
 package com.kkwakjavacoding.kcalendar.firebase
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
@@ -86,6 +87,38 @@ class Database {
 //        }
 
         return foods
+    }
+
+    suspend fun getFood(date: String, time: String): ArrayList<Food>? {
+        var foodMap: HashMap<String, Any>
+        var foodList: ArrayList<Food> = ArrayList()
+
+        val task: Task<DataSnapshot> = database.child(date).child(time).get()
+        val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
+        val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
+
+        while (data.iterator().hasNext()) {
+            var snapshot = data.iterator().next()
+            foodMap = snapshot.value as HashMap<String, Any>
+
+            var food = Food(
+                foodMap["id"].toString().toInt(),
+                foodMap["name"].toString(),
+                foodMap["brand"].toString(),
+                foodMap["classification"].toString(),
+                foodMap["serving"].toString().toDouble(),
+                foodMap["unit"].toString(),
+                foodMap["kcal"].toString().toDouble(),
+                foodMap["carbs"].toString().toDouble(),
+                foodMap["protein"].toString().toDouble(),
+                foodMap["fat"].toString().toDouble(),
+                foodMap["sugars"].toString().toDouble(),
+                foodMap["sodium"].toString().toDouble()
+            )
+            foodList.add(food)
+        }
+
+        return foodList
     }
 
     fun deleteFood(date: String, time: String, name: String) {
