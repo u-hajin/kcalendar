@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kkwakjavacoding.kcalendar.FoodInfoDialog
 import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
@@ -51,7 +52,8 @@ class KcalendarActivity : AppCompatActivity() {
     private var time = BREAKFAST
 
     lateinit var recordAdapter: RecordAdapter
-    val db = Database()
+    private val db = Database()
+    private val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -215,7 +217,8 @@ class KcalendarActivity : AppCompatActivity() {
 
         recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
             override fun OnItemClick(data: Food) {
-                // 클릭 시 다이얼로그
+                val foodInfoDialog = FoodInfoDialog(context)
+                foodInfoDialog.showDialog(data)
             }
         }
 
@@ -228,9 +231,11 @@ class KcalendarActivity : AppCompatActivity() {
 
         MainScope().launch {
             var foodList: ArrayList<Food>
+
             withContext(Dispatchers.Default) {
                 foodList = db.getFood(date, time)!!
             }
+
             if (!foodList.isEmpty()) {
                 for (i in foodList) {
                     recordAdapter.items.add(i.copy())
@@ -239,7 +244,6 @@ class KcalendarActivity : AppCompatActivity() {
 
             recordAdapter.notifyDataSetChanged()
         }
-
     }
 
 }
