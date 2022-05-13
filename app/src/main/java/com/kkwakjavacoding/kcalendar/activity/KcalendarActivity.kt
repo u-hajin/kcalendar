@@ -79,10 +79,10 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
 
-        getTotalRecord()
         getGoalRecord()
-        initRecyclerView()
+        getTotalRecord()
         setProgressBar()
+        initRecyclerView()
     }
 
     inner class ButtonListener : View.OnClickListener {
@@ -126,6 +126,9 @@ class KcalendarActivity : AppCompatActivity() {
             binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
 
             getRecord()
+            getGoalRecord()
+            getTotalRecord()
+            setProgressBar()
         }
     }
 
@@ -285,5 +288,31 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
     }
-    
+
+    private fun setProgressBar() {
+        MainScope().launch {
+            var goal: Nutrition
+            var total: Nutrition
+            withContext(Dispatchers.Default) {
+                goal = db.getGoal(date)
+                total = db.getTotal(date)
+            }
+            binding.apply {
+                kcalBar.progress =
+                    (total.kcal / goal.kcal).times(100).toInt()
+                carbsBar.progress =
+                    (total.carbs / goal.carbs).times(100).toInt()
+                proteinBar.progress =
+                    (total.protein / goal.protein).times(100).toInt()
+                fatBar.progress =
+                    (total.fat / goal.fat).times(100).toInt()
+                sugarsBar.progress =
+                    (total.sugars / goal.sugars).times(100).toInt()
+                sodiumBar.progress =
+                    (total.sodium / goal.sodium).times(100).toInt()
+
+            }
+
+        }
+    }
 }
