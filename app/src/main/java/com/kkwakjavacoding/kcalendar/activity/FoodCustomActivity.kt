@@ -280,6 +280,7 @@ class FoodCustomActivity : AppCompatActivity() {
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     serving = binding.servingSpinner.selectedItem.toString()
+                    quantity = binding.customQuantity.text.toString().toDouble()
                     customQuantity()
                 }
 
