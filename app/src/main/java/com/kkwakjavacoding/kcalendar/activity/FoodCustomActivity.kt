@@ -244,7 +244,8 @@ class FoodCustomActivity : AppCompatActivity() {
     private fun matchSelectedFood() {
         for (i in searchList) {
             if (i.name == selected) {
-                food = i
+                food = i.copy()
+                customFood = i.copy()
                 break
             }
         }
