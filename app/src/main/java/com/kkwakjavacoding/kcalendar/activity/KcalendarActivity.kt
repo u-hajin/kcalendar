@@ -7,8 +7,16 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kkwakjavacoding.kcalendar.R
+import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
+import com.kkwakjavacoding.kcalendar.firebase.Database
+import com.kkwakjavacoding.kcalendar.fooddatabase.Food
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
@@ -16,6 +24,7 @@ import java.nio.ByteOrder
 import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
@@ -41,6 +50,9 @@ class KcalendarActivity : AppCompatActivity() {
     private var date = ""
     private var time = BREAKFAST
 
+    lateinit var recordAdapter: RecordAdapter
+    val db = Database()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKcalendarBinding.inflate(layoutInflater)
@@ -63,6 +75,8 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
 
+        initRecyclerView()
+
     }
 
     inner class ButtonListener : View.OnClickListener {
@@ -73,18 +87,21 @@ class KcalendarActivity : AppCompatActivity() {
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round_selected)
                     binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                    getRecord()
                 }
                 binding.lunchBtn.id -> {
                     time = LUNCH
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
                     binding.lunchBtn.setBackgroundResource(R.color.deep_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                    getRecord()
                 }
                 binding.dinnerBtn.id -> {
                     time = DINNER
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
                     binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round_selected)
+                    getRecord()
                 }
             }
         }
@@ -96,6 +113,13 @@ class KcalendarActivity : AppCompatActivity() {
             month = i2 + 1
             day = i3
             convertDateFormat()
+
+            time = BREAKFAST
+            binding.breakfastBtn.setBackgroundResource(R.drawable.left_round_selected)
+            binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
+            binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+
+            getRecord()
         }
     }
 
@@ -181,6 +205,41 @@ class KcalendarActivity : AppCompatActivity() {
         }
 
         predictResult = foods[maxIndex]
+    }
+
+    private fun initRecyclerView() {
+        binding.recordList.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        recordAdapter = RecordAdapter(ArrayList<Food>())
+
+        recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
+            override fun OnItemClick(data: Food) {
+                // 클릭 시 다이얼로그
+            }
+        }
+
+        binding.recordList.adapter = recordAdapter
+        getRecord()
+    }
+
+    private fun getRecord() {
+        recordAdapter.items.clear()
+
+        MainScope().launch {
+            var foodList: ArrayList<Food>
+            withContext(Dispatchers.Default) {
+                foodList = db.getFood(date, time)!!
+            }
+            if (!foodList.isEmpty()) {
+                for (i in foodList) {
+                    recordAdapter.items.add(i.copy())
+                }
+            }
+
+            recordAdapter.notifyDataSetChanged()
+        }
+
     }
 
 }

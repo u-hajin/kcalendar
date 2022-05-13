@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_bold"
-            android:text="음식 이름"
             android:textSize="18sp" />
 
         <View
@@ -28,15 +27,14 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/KcalInfo"
+            android:id="@+id/kcalInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"
-            android:text="2500"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/KcalText"
+            android:id="@+id/kcalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"

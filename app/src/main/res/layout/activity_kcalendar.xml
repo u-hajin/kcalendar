@@ -654,6 +654,7 @@
                     app:tint="@color/deep_green" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recordList"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_margin="10dp" />
