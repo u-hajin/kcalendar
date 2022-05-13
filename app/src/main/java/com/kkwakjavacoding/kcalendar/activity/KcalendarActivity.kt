@@ -13,6 +13,7 @@ import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
 import com.kkwakjavacoding.kcalendar.firebase.Database
+import com.kkwakjavacoding.kcalendar.firebase.Nutrition
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -26,6 +27,7 @@ import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
@@ -77,8 +79,10 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
 
+        getTotalRecord()
+        getGoalRecord()
         initRecyclerView()
-
+        setProgressBar()
     }
 
     inner class ButtonListener : View.OnClickListener {
@@ -246,4 +250,40 @@ class KcalendarActivity : AppCompatActivity() {
         }
     }
 
+    private fun getGoalRecord() {
+        MainScope().launch {
+            var goal: Nutrition
+            withContext(Dispatchers.Default) {
+                goal = db.getGoal(date)
+            }
+
+            binding.apply {
+                goalKcalInfo.text = goal.kcal.roundToInt().toString()
+                goalCarbsInfo.text = goal.carbs.roundToInt().toString()
+                goalProteinInfo.text = goal.protein.roundToInt().toString()
+                goalFatInfo.text = goal.fat.roundToInt().toString()
+                goalSugarsInfo.text = goal.sugars.roundToInt().toString()
+                goalSodiumInfo.text = goal.sodium.roundToInt().toString()
+            }
+        }
+    }
+
+    private fun getTotalRecord() {
+        MainScope().launch {
+            var total: Nutrition
+            withContext(Dispatchers.Default) {
+                total = db.getTotal(date)
+            }
+
+            binding.apply {
+                kcalInfo.text = total.kcal.roundToInt().toString()
+                carbsInfo.text = total.carbs.roundToInt().toString()
+                proteinInfo.text = total.protein.roundToInt().toString()
+                fatInfo.text = total.fat.roundToInt().toString()
+                sugarsInfo.text = total.sugars.roundToInt().toString()
+                binding.sodiumInfo.text = total.sodium.roundToInt().toString()
+            }
+        }
+    }
+    
 }

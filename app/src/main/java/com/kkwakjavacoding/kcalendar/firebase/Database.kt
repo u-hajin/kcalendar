@@ -25,8 +25,8 @@ class Database {
         database.child(date).child("total").setValue(nutrition)
     }
 
-    suspend fun getGoal(date: String): HashMap<String, Any> {
-        var goal: HashMap<String, Any> = HashMap()
+    suspend fun getGoal(date: String): Nutrition {
+        var goalMap: HashMap<String, Double> = HashMap()
         val task: Task<DataSnapshot> = database.child(date).get()
         val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
         val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
@@ -35,8 +35,24 @@ class Database {
             var snapshot = data.iterator().next()
 
             if (snapshot.key.toString() == "goal") {
-                goal = snapshot.value as HashMap<String, Any>
+                goalMap = snapshot.value as HashMap<String, Double>
             }
+        }
+
+        var goal: Nutrition
+
+        if (goalMap.isEmpty()) {
+            goal = Nutrition(1900.0, 324.0, 55.0, 54.0, 100.0, 2000.0) // 1일 기준치가 default
+            insertGoal(date, goal)
+        } else {
+            goal = Nutrition(
+                goalMap["kcal"]!!,
+                goalMap["carbs"]!!,
+                goalMap["protein"]!!,
+                goalMap["fat"]!!,
+                goalMap["sugars"]!!,
+                goalMap["sodium"]!!
+            )
         }
 
         return goal
