@@ -6,6 +6,8 @@ import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 class FoodInfoDialog(context: Context) {
     private val dialog = Dialog(context)
@@ -21,12 +23,12 @@ class FoodInfoDialog(context: Context) {
 
         dialog.findViewById<TextView>(R.id.foodName).text = food.name
         dialog.findViewById<TextView>(R.id.foodQuantity).text = food.serving.toString() + food.unit
-        dialog.findViewById<TextView>(R.id.kcalValue).text = food.kcal.toString()
-        dialog.findViewById<TextView>(R.id.carbsValue).text = food.carbs.toString()
-        dialog.findViewById<TextView>(R.id.proteinValue).text = food.protein.toString()
-        dialog.findViewById<TextView>(R.id.fatValue).text = food.fat.toString()
-        dialog.findViewById<TextView>(R.id.sugarsValue).text = food.sugars.toString()
-        dialog.findViewById<TextView>(R.id.sodiumValue).text = food.sodium.toString()
+        dialog.findViewById<TextView>(R.id.kcalValue).text = food.kcal.roundToInt().toString()
+        dialog.findViewById<TextView>(R.id.carbsValue).text = food.carbs!!.roundToInt().toString()
+        dialog.findViewById<TextView>(R.id.proteinValue).text = food.protein!!.roundToInt().toString()
+        dialog.findViewById<TextView>(R.id.fatValue).text = food.fat!!.roundToInt().toString()
+        dialog.findViewById<TextView>(R.id.sugarsValue).text = food.sugars!!.roundToInt().toString()
+        dialog.findViewById<TextView>(R.id.sodiumValue).text = food.sodium!!.roundToInt().toString()
 
         dialog.show()
     }
