@@ -44,6 +44,10 @@ class FoodCustomActivity : AppCompatActivity() {
     private var searchList: List<Food> = listOf()
     private var serving = SERVING
     private var quantity: Double = 1.0
+    private var saltyList = arrayListOf(0.8, 0.9, 1.0, 1.1, 1.2)
+    private var sweetList = arrayListOf(0.8, 0.9, 1.0, 1.1, 1.2)
+    private var salty = 1.0
+    private var sweet = 1.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,8 @@ class FoodCustomActivity : AppCompatActivity() {
         setServingSpinnerListener()
         setBrandSpinnerListener()
         setFoodNameSpinnerListener()
+        setSaltyListener()
+        setSweetListener()
         buttonListener()
 
         foodViewModel = ViewModelProvider(
@@ -306,8 +312,8 @@ class FoodCustomActivity : AppCompatActivity() {
             food.carbs?.times(quantity),
             food.protein?.times(quantity),
             food.fat?.times(quantity),
-            food.sugars?.times(quantity),
-            food.sodium?.times(quantity),
+            food.sugars?.times(quantity)?.times(sweet),
+            food.sodium?.times(quantity)?.times(salty)
         )
         showFoodInfo(customFood)
     }
@@ -321,6 +327,32 @@ class FoodCustomActivity : AppCompatActivity() {
             total.sugars + food.sugars!!,
             total.sodium + food.sodium!!
         )
+    }
+
+    private fun setSaltyListener() {
+        binding.salty.setOnCheckedChangeListener { _, i ->
+            when (i) {
+                binding.salty1.id -> salty = saltyList[0]
+                binding.salty2.id -> salty = saltyList[1]
+                binding.salty3.id -> salty = saltyList[2]
+                binding.salty4.id -> salty = saltyList[3]
+                binding.salty5.id -> salty = saltyList[4]
+            }
+            customQuantity()
+        }
+    }
+
+    private fun setSweetListener() {
+        binding.sweet.setOnCheckedChangeListener { _, i ->
+            when (i) {
+                binding.sweet1.id -> sweet = sweetList[0]
+                binding.sweet2.id -> sweet = sweetList[1]
+                binding.sweet3.id -> sweet = sweetList[2]
+                binding.sweet4.id -> sweet = sweetList[3]
+                binding.sweet5.id -> sweet = sweetList[4]
+            }
+            customQuantity()
+        }
     }
 
 }

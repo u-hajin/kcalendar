@@ -575,6 +575,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
+            android:id="@+id/salty"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginHorizontal="10dp"
@@ -655,6 +656,7 @@
             android:textSize="16sp" />
 
         <RadioGroup
+            android:id="@+id/sweet"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginHorizontal="10dp"
