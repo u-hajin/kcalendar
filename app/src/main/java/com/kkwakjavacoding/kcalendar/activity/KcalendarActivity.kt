@@ -7,8 +7,18 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kkwakjavacoding.kcalendar.Dialog
 import com.kkwakjavacoding.kcalendar.R
+import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
+import com.kkwakjavacoding.kcalendar.firebase.Database
+import com.kkwakjavacoding.kcalendar.firebase.Nutrition
+import com.kkwakjavacoding.kcalendar.fooddatabase.Food
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
@@ -16,6 +26,8 @@ import java.nio.ByteOrder
 import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 const val REQUEST_GALLERY = 100
 const val REQUEST_CAMERA = 200
@@ -41,6 +53,10 @@ class KcalendarActivity : AppCompatActivity() {
     private var date = ""
     private var time = BREAKFAST
 
+    lateinit var recordAdapter: RecordAdapter
+    private val db = Database()
+    private val context = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKcalendarBinding.inflate(layoutInflater)
@@ -63,6 +79,10 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
 
+        getTotalRecord()
+        getGoalRecord()
+        setProgressBar()
+        initRecyclerView()
     }
 
     inner class ButtonListener : View.OnClickListener {
@@ -73,18 +93,21 @@ class KcalendarActivity : AppCompatActivity() {
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round_selected)
                     binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                    getRecord()
                 }
                 binding.lunchBtn.id -> {
                     time = LUNCH
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
                     binding.lunchBtn.setBackgroundResource(R.color.deep_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+                    getRecord()
                 }
                 binding.dinnerBtn.id -> {
                     time = DINNER
                     binding.breakfastBtn.setBackgroundResource(R.drawable.left_round)
                     binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
                     binding.dinnerBtn.setBackgroundResource(R.drawable.right_round_selected)
+                    getRecord()
                 }
             }
         }
@@ -96,6 +119,16 @@ class KcalendarActivity : AppCompatActivity() {
             month = i2 + 1
             day = i3
             convertDateFormat()
+
+            time = BREAKFAST
+            binding.breakfastBtn.setBackgroundResource(R.drawable.left_round_selected)
+            binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
+            binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
+
+            getRecord()
+            getGoalRecord()
+            getTotalRecord()
+            setProgressBar()
         }
     }
 
@@ -183,4 +216,125 @@ class KcalendarActivity : AppCompatActivity() {
         predictResult = foods[maxIndex]
     }
 
+    private fun initRecyclerView() {
+        binding.recordList.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        recordAdapter = RecordAdapter(ArrayList<Food>())
+
+        recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
+            override fun OnItemClick(data: Food) {
+                val foodInfoDialog = Dialog(context)
+                foodInfoDialog.showFoodInfoDialog(data)
+            }
+
+            override fun deleteClick(data: Food, position: Int) {
+                recordAdapter.removeItem(position)
+                db.deleteFood(date, time, data.name)
+                MainScope().launch {
+                    var total: Nutrition
+                    withContext(Dispatchers.Default) {
+                        total = db.getTotal(date)
+                    }
+                    var newTotal = Nutrition(
+                        total.kcal - data.kcal,
+                        total.carbs - data.carbs!!,
+                        total.protein - data.protein!!,
+                        total.fat - data.fat!!,
+                        total.sugars - data.sugars!!,
+                        total.sodium - data.sodium!!
+                    )
+                    db.insertTotal(date, newTotal)
+                    getTotalRecord()
+                    setProgressBar()
+                }
+            }
+        }
+
+        binding.recordList.adapter = recordAdapter
+        getRecord()
+    }
+
+    private fun getRecord() {
+        recordAdapter.items.clear()
+
+        MainScope().launch {
+            var foodList: ArrayList<Food>
+
+            withContext(Dispatchers.Default) {
+                foodList = db.getFood(date, time)!!
+            }
+
+            if (!foodList.isEmpty()) {
+                for (i in foodList) {
+                    recordAdapter.items.add(i.copy())
+                }
+            }
+
+            recordAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun getGoalRecord() {
+        MainScope().launch {
+            var goal: Nutrition
+            withContext(Dispatchers.Default) {
+                goal = db.getGoal(date)
+            }
+
+            binding.apply {
+                goalKcalInfo.text = goal.kcal.roundToInt().toString()
+                goalCarbsInfo.text = goal.carbs.roundToInt().toString()
+                goalProteinInfo.text = goal.protein.roundToInt().toString()
+                goalFatInfo.text = goal.fat.roundToInt().toString()
+                goalSugarsInfo.text = goal.sugars.roundToInt().toString()
+                goalSodiumInfo.text = goal.sodium.roundToInt().toString()
+            }
+        }
+    }
+
+    private fun getTotalRecord() {
+        MainScope().launch {
+            var total: Nutrition
+            withContext(Dispatchers.Default) {
+                total = db.getTotal(date)
+            }
+
+            binding.apply {
+                kcalInfo.text = total.kcal.roundToInt().toString()
+                carbsInfo.text = total.carbs.roundToInt().toString()
+                proteinInfo.text = total.protein.roundToInt().toString()
+                fatInfo.text = total.fat.roundToInt().toString()
+                sugarsInfo.text = total.sugars.roundToInt().toString()
+                binding.sodiumInfo.text = total.sodium.roundToInt().toString()
+            }
+        }
+    }
+
+    private fun setProgressBar() {
+        MainScope().launch {
+            var goal: Nutrition
+            var total: Nutrition
+            withContext(Dispatchers.Default) {
+                goal = db.getGoal(date)
+                total = db.getTotal(date)
+            }
+            binding.apply {
+                kcalBar.progress =
+                    (total.kcal / goal.kcal).times(100).toInt()
+                carbsBar.progress =
+                    (total.carbs / goal.carbs).times(100).toInt()
+                proteinBar.progress =
+                    (total.protein / goal.protein).times(100).toInt()
+                fatBar.progress =
+                    (total.fat / goal.fat).times(100).toInt()
+                sugarsBar.progress =
+                    (total.sugars / goal.sugars).times(100).toInt()
+                sodiumBar.progress =
+                    (total.sodium / goal.sodium).times(100).toInt()
+
+            }
+
+        }
+    }
 }

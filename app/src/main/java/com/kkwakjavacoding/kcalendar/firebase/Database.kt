@@ -1,5 +1,6 @@
 package com.kkwakjavacoding.kcalendar.firebase
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
@@ -24,8 +25,8 @@ class Database {
         database.child(date).child("total").setValue(nutrition)
     }
 
-    suspend fun getGoal(date: String): HashMap<String, Any> {
-        var goal: HashMap<String, Any> = HashMap()
+    suspend fun getGoal(date: String): Nutrition {
+        var goalMap: HashMap<String, Double> = HashMap()
         val task: Task<DataSnapshot> = database.child(date).get()
         val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
         val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
@@ -34,8 +35,24 @@ class Database {
             var snapshot = data.iterator().next()
 
             if (snapshot.key.toString() == "goal") {
-                goal = snapshot.value as HashMap<String, Any>
+                goalMap = snapshot.value as HashMap<String, Double>
             }
+        }
+
+        var goal: Nutrition
+
+        if (goalMap.isEmpty()) {
+            goal = Nutrition(1900.0, 324.0, 55.0, 54.0, 100.0, 2000.0) // 1일 기준치가 default
+            insertGoal(date, goal)
+        } else {
+            goal = Nutrition(
+                goalMap["kcal"]!!,
+                goalMap["carbs"]!!,
+                goalMap["protein"]!!,
+                goalMap["fat"]!!,
+                goalMap["sugars"]!!,
+                goalMap["sodium"]!!
+            )
         }
 
         return goal
@@ -86,6 +103,38 @@ class Database {
 //        }
 
         return foods
+    }
+
+    suspend fun getFood(date: String, time: String): ArrayList<Food>? {
+        var foodMap: HashMap<String, Any>
+        var foodList: ArrayList<Food> = ArrayList()
+
+        val task: Task<DataSnapshot> = database.child(date).child(time).get()
+        val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
+        val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
+
+        while (data.iterator().hasNext()) {
+            var snapshot = data.iterator().next()
+            foodMap = snapshot.value as HashMap<String, Any>
+
+            var food = Food(
+                foodMap["id"].toString().toInt(),
+                foodMap["name"].toString(),
+                foodMap["brand"].toString(),
+                foodMap["classification"].toString(),
+                foodMap["serving"].toString().toDouble(),
+                foodMap["unit"].toString(),
+                foodMap["kcal"].toString().toDouble(),
+                foodMap["carbs"].toString().toDouble(),
+                foodMap["protein"].toString().toDouble(),
+                foodMap["fat"].toString().toDouble(),
+                foodMap["sugars"].toString().toDouble(),
+                foodMap["sodium"].toString().toDouble()
+            )
+            foodList.add(food)
+        }
+
+        return foodList
     }
 
     fun deleteFood(date: String, time: String, name: String) {

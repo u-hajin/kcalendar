@@ -194,7 +194,6 @@
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView4"
@@ -206,7 +205,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="1500"
                         app:layout_constraintEnd_toStartOf="@id/textView20"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -226,7 +224,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="1800"
                         app:layout_constraintEnd_toStartOf="@id/kcalText"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -265,7 +262,6 @@
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView5"
@@ -277,7 +273,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="275"
                         app:layout_constraintEnd_toStartOf="@id/textView21"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -297,7 +292,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="320"
                         app:layout_constraintEnd_toStartOf="@id/unitText1"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -336,7 +330,6 @@
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView6"
@@ -348,7 +341,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="54.6"
                         app:layout_constraintEnd_toStartOf="@id/textView22"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -368,7 +360,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="57"
                         app:layout_constraintEnd_toStartOf="@id/unitText2"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -407,7 +398,6 @@
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView7"
@@ -419,7 +409,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="50"
                         app:layout_constraintEnd_toStartOf="@id/textView23"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -439,7 +428,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="61"
                         app:layout_constraintEnd_toStartOf="@id/unitText3"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -473,24 +461,22 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ProgressBar
-                        android:id="@+id/sugarBar"
+                        android:id="@+id/sugarsBar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView8"
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
-                        android:id="@+id/sugarInfo"
+                        android:id="@+id/sugarsInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="95.2"
                         app:layout_constraintEnd_toStartOf="@id/textView24"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -501,16 +487,15 @@
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
                         android:text=" / "
-                        app:layout_constraintEnd_toStartOf="@id/goalSugarInfo"
+                        app:layout_constraintEnd_toStartOf="@id/goalSugarsInfo"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/goalSugarInfo"
+                        android:id="@+id/goalSugarsInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="90"
                         app:layout_constraintEnd_toStartOf="@id/unitText4"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -521,7 +506,7 @@
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
                         android:text=" (g)"
-                        app:layout_constraintEnd_toEndOf="@+id/sugarBar"
+                        app:layout_constraintEnd_toEndOf="@+id/sugarsBar"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -549,7 +534,6 @@
                         android:layout_width="180dp"
                         android:layout_height="18dp"
                         android:layout_marginEnd="10dp"
-                        android:progress="50"
                         android:progressTint="@color/deep_green"
                         android:scaleY="3"
                         app:layout_constraintBottom_toBottomOf="@+id/textView9"
@@ -561,7 +545,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="2264.45"
                         app:layout_constraintEnd_toStartOf="@id/textView25"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -581,7 +564,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="2000"
                         app:layout_constraintEnd_toStartOf="@id/unitText5"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -654,6 +636,7 @@
                     app:tint="@color/deep_green" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recordList"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_margin="10dp" />

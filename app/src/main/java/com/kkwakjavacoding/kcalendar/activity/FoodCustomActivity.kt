@@ -82,8 +82,6 @@ class FoodCustomActivity : AppCompatActivity() {
         binding.foodNameSpinner.adapter = foodNameAdapter
 
         showPredictResult()
-
-        binding.customQuantity.addTextChangedListener(QuantityWatcher())
     }
 
     inner class QuantityWatcher : TextWatcher {
@@ -136,6 +134,7 @@ class FoodCustomActivity : AppCompatActivity() {
                 showFoodInfo(this.food)
                 setCheckBoxAuto()
                 setBrandSpinnerFirst(it)
+                binding.customQuantity.addTextChangedListener(QuantityWatcher())
             }
         }
     }
@@ -244,7 +243,8 @@ class FoodCustomActivity : AppCompatActivity() {
     private fun matchSelectedFood() {
         for (i in searchList) {
             if (i.name == selected) {
-                food = i
+                food = i.copy()
+                customFood = i.copy()
                 break
             }
         }
@@ -306,14 +306,14 @@ class FoodCustomActivity : AppCompatActivity() {
             food.name,
             food.classification,
             food.brand,
-            food.serving.times(quantity),
+            round(food.serving.times(quantity) * 100) / 100,
             food.unit,
-            food.kcal.times(quantity),
-            food.carbs?.times(quantity),
-            food.protein?.times(quantity),
-            food.fat?.times(quantity),
-            food.sugars?.times(quantity)?.times(sweet),
-            food.sodium?.times(quantity)?.times(salty)
+            round(food.kcal.times(quantity) * 100) / 100,
+            round(food.carbs?.times(quantity)?.times(100)!!) / 100,
+            round(food.protein?.times(quantity)?.times(100)!!) / 100,
+            round(food.fat?.times(quantity)?.times(100)!!) / 100,
+            round(food.sugars?.times(quantity)?.times(sweet)?.times(100)!!) / 100,
+            round(food.sodium?.times(quantity)?.times(salty)?.times(100)!!) / 100,
         )
         showFoodInfo(customFood)
     }
