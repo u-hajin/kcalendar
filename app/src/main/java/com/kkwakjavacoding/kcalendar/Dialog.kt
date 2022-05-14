@@ -6,13 +6,12 @@ import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
-import kotlin.math.round
 import kotlin.math.roundToInt
 
-class FoodInfoDialog(context: Context) {
+class Dialog(context: Context) {
     private val dialog = Dialog(context)
 
-    fun showDialog(food: Food) {
+    fun showFoodInfoDialog(food: Food) {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.custom_food_info_dialog)
         dialog.setCancelable(true) // 바깥 화면 누르면 닫힘.
@@ -32,4 +31,6 @@ class FoodInfoDialog(context: Context) {
 
         dialog.show()
     }
+    
+    // 나머지 dialog 함수 만들어서 쓰기
 }

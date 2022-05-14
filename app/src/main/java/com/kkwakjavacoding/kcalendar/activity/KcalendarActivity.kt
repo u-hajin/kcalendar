@@ -8,7 +8,7 @@ import android.provider.MediaStore
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kkwakjavacoding.kcalendar.FoodInfoDialog
+import com.kkwakjavacoding.kcalendar.Dialog
 import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
 import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
@@ -224,8 +224,8 @@ class KcalendarActivity : AppCompatActivity() {
 
         recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
             override fun OnItemClick(data: Food) {
-                val foodInfoDialog = FoodInfoDialog(context)
-                foodInfoDialog.showDialog(data)
+                val foodInfoDialog = Dialog(context)
+                foodInfoDialog.showFoodInfoDialog(data)
             }
         }
 
