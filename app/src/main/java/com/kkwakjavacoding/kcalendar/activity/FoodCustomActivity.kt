@@ -58,6 +58,7 @@ class FoodCustomActivity : AppCompatActivity() {
         // date, time도 intent로 받아야 함.
         predictResult = intent.getStringExtra("result")!!
 
+        foldListener()
         setServingSpinner()
         setServingSpinnerListener()
         setBrandSpinnerListener()
@@ -296,6 +297,8 @@ class FoodCustomActivity : AppCompatActivity() {
     }
 
     private fun customQuantity() {
+        quantity = binding.customQuantity.text.toString().toDouble()
+
         if (serving == UNIT) {
             quantity /= food.serving
             quantity = round(quantity * 100) / 100
@@ -352,6 +355,18 @@ class FoodCustomActivity : AppCompatActivity() {
                 binding.sweet5.id -> sweet = sweetList[4]
             }
             customQuantity()
+        }
+    }
+
+    private fun foldListener() {
+        binding.fold.setOnClickListener {
+            if (binding.classification.visibility == View.VISIBLE) {
+                binding.classification.visibility = View.GONE
+                binding.fold.text = "음식 검색                                              펼치기 ▲"
+            } else {
+                binding.classification.visibility = View.VISIBLE
+                binding.fold.text = "음식 검색                                                   접기 ▼"
+            }
         }
     }
 
