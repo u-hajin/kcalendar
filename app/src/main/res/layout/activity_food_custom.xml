@@ -286,20 +286,22 @@
             android:background="@color/black_green" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/fold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/pretendard_bold"
-            android:text="음식 검색"
+            android:text="음식 검색                                              펼치기 ▲"
             android:textSize="16sp" />
 
         <ScrollView
+            android:id="@+id/classification"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_margin="10dp"
             android:background="@drawable/edge"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:visibility="gone">
 
             <TableLayout
                 android:layout_width="match_parent"
