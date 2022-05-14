@@ -297,6 +297,8 @@ class FoodCustomActivity : AppCompatActivity() {
     }
 
     private fun customQuantity() {
+        quantity = binding.customQuantity.text.toString().toDouble()
+
         if (serving == UNIT) {
             quantity /= food.serving
             quantity = round(quantity * 100) / 100
