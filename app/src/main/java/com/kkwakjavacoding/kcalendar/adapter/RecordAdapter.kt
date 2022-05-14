@@ -2,6 +2,7 @@ package com.kkwakjavacoding.kcalendar.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.kkwakjavacoding.kcalendar.databinding.RecyclerviewRowBinding
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
@@ -11,6 +12,7 @@ class RecordAdapter(val items: ArrayList<Food>) : RecyclerView.Adapter<RecordAda
 
     interface OnItemClickListener {
         fun OnItemClick(data: Food)
+        fun deleteClick(data: Food, position: Int)
     }
 
     var itemClickListener: OnItemClickListener? = null
@@ -19,8 +21,12 @@ class RecordAdapter(val items: ArrayList<Food>) : RecyclerView.Adapter<RecordAda
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.root.setOnClickListener { // textView 클릭하면 처리
+            binding.root.setOnClickListener {
                 itemClickListener?.OnItemClick(items[adapterPosition])
+            }
+
+            binding.deleteBtn.setOnClickListener {
+                itemClickListener?.deleteClick(items[adapterPosition], adapterPosition)
             }
 
         }
@@ -50,5 +56,10 @@ class RecordAdapter(val items: ArrayList<Food>) : RecyclerView.Adapter<RecordAda
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun removeItem(position: Int) {
+        items.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

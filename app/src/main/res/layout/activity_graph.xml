@@ -285,7 +285,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                         <TextView
@@ -295,7 +294,6 @@
                             android:layout_gravity="right"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="(100%)"
                             android:textSize="16sp" />
 
                         <TextView
@@ -313,7 +311,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -344,7 +341,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                         <TextView
@@ -354,7 +350,6 @@
                             android:layout_gravity="right"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="(100%)"
                             android:textSize="16sp" />
 
                         <TextView
@@ -372,7 +367,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="324"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -403,7 +397,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                         <TextView
@@ -413,7 +406,6 @@
                             android:layout_gravity="right"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="(100%)"
                             android:textSize="16sp" />
 
                         <TextView
@@ -431,7 +423,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="324"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -462,7 +453,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                         <TextView
@@ -472,7 +462,6 @@
                             android:layout_gravity="right"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="(100%)"
                             android:textSize="16sp" />
 
                         <TextView
@@ -489,7 +478,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="324"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -520,7 +508,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="320"
                             android:textSize="16sp" />
 
                         <TextView
@@ -530,7 +517,6 @@
                             android:layout_gravity="right"
                             android:layout_marginLeft="5dp"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="(100%)"
                             android:textSize="16sp" />
 
                         <TextView
@@ -548,7 +534,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:fontFamily="@font/pretendard_semi_bold"
-                            android:text="324"
                             android:textSize="16sp" />
 
                     </LinearLayout>

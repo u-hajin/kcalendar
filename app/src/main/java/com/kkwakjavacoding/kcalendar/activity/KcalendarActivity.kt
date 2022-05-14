@@ -79,8 +79,8 @@ class KcalendarActivity : AppCompatActivity() {
             }
         }
 
-        getGoalRecord()
         getTotalRecord()
+        getGoalRecord()
         setProgressBar()
         initRecyclerView()
     }
@@ -226,6 +226,28 @@ class KcalendarActivity : AppCompatActivity() {
             override fun OnItemClick(data: Food) {
                 val foodInfoDialog = Dialog(context)
                 foodInfoDialog.showFoodInfoDialog(data)
+            }
+
+            override fun deleteClick(data: Food, position: Int) {
+                recordAdapter.removeItem(position)
+                db.deleteFood(date, time, data.name)
+                MainScope().launch {
+                    var total: Nutrition
+                    withContext(Dispatchers.Default) {
+                        total = db.getTotal(date)
+                    }
+                    var newTotal = Nutrition(
+                        total.kcal - data.kcal,
+                        total.carbs - data.carbs!!,
+                        total.protein - data.protein!!,
+                        total.fat - data.fat!!,
+                        total.sugars - data.sugars!!,
+                        total.sodium - data.sodium!!
+                    )
+                    db.insertTotal(date, newTotal)
+                    getTotalRecord()
+                    setProgressBar()
+                }
             }
         }
 
