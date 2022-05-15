@@ -3,6 +3,7 @@ package com.kkwakjavacoding.kcalendar
 import android.app.Dialog
 import android.content.Context
 import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
@@ -31,6 +32,20 @@ class Dialog(context: Context) {
 
         dialog.show()
     }
-    
+    fun addWeightDialog(){
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.weight_input_dialog)
+        dialog.setCancelable(true) // 바깥 화면 누르면 닫힘.
+
+        dialog.findViewById<Button>(R.id.weightInputCancelBtn).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<Button>(R.id.weightInputSaveBtn).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
     // 나머지 dialog 함수 만들어서 쓰기
 }

@@ -83,6 +83,14 @@ class KcalendarActivity : AppCompatActivity() {
         getGoalRecord()
         setProgressBar()
         initRecyclerView()
+        buttonListener()
+    }
+
+    private fun buttonListener() {
+        binding.weightBtn.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.addWeightDialog()
+        }
     }
 
     inner class ButtonListener : View.OnClickListener {
