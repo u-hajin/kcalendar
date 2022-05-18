@@ -16,7 +16,6 @@ class GraphActivity : AppCompatActivity() {
         buttonListener()
     }
     private fun buttonListener() {
-
         binding.kcalCalculateBtn.setOnClickListener{
             val intent = Intent(this, CalorieCalculateActivity::class.java)
             startActivity(intent)
@@ -24,6 +23,14 @@ class GraphActivity : AppCompatActivity() {
 
         binding.goalInfoBtn.setOnClickListener{
             val intent = Intent(this, GoalInputActivity::class.java)
+            startActivity(intent)
+        }
+        binding.CalendarImg.setOnClickListener {
+            val intent = Intent(this, KcalendarActivity::class.java)
+            startActivity(intent)
+        }
+        binding.CalendarText.setOnClickListener {
+            val intent = Intent(this, KcalendarActivity::class.java)
             startActivity(intent)
         }
     }

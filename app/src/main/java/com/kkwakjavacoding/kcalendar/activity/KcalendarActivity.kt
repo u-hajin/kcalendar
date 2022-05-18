@@ -52,6 +52,9 @@ class KcalendarActivity : AppCompatActivity() {
     private var day = 0
     private var date = ""
     private var time = BREAKFAST
+    private var yesterday = ""
+    private var installDate = ""
+    private var today = ""
 
     lateinit var recordAdapter: RecordAdapter
     private val db = Database()
@@ -72,6 +75,13 @@ class KcalendarActivity : AppCompatActivity() {
 
         val currentDate = Calendar.getInstance().time
         date = SimpleDateFormat("yyyy-MM-dd").format(currentDate)
+        today=date
+
+        val beforeDate = Calendar.getInstance()
+        beforeDate.add(Calendar.DAY_OF_YEAR,-1)
+
+        var timeToDate = beforeDate.time
+        yesterday=SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
 
         binding.apply {
             foodAddBtn.setOnClickListener {
@@ -84,7 +94,9 @@ class KcalendarActivity : AppCompatActivity() {
         setProgressBar()
         initRecyclerView()
         buttonListener()
+        imgListener()
     }
+
 
     private fun buttonListener() {
         binding.weightBtn.setOnClickListener {
@@ -345,4 +357,17 @@ class KcalendarActivity : AppCompatActivity() {
 
         }
     }
+
+    private fun imgListener() {
+        binding.GraphImg.setOnClickListener {
+            val intent = Intent(this, GraphActivity::class.java)
+            startActivity(intent)
+        }
+        binding.GraphText.setOnClickListener {
+            val intent = Intent(this, GraphActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
 }
