@@ -1,17 +1,21 @@
 package com.kkwakjavacoding.kcalendar.firebase
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
 import kotlinx.coroutines.tasks.asDeferred
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class Database {
 
     val id = UserID.getWidevineID()
     val database = Firebase.database.getReference("userToken").child(id)
+    var map: HashMap<String, Double> = HashMap()
 
     fun insertGoal(date: String, nutrition: Nutrition) {
         database.child(date).child("goal").setValue(nutrition)
@@ -38,13 +42,9 @@ class Database {
                 goalMap = snapshot.value as HashMap<String, Double>
             }
         }
+        var goal : Nutrition? = null
 
-        var goal: Nutrition
-
-        if (goalMap.isEmpty()) {
-            goal = Nutrition(1900.0, 324.0, 55.0, 54.0, 100.0, 2000.0) // 1일 기준치가 default
-            insertGoal(date, goal)
-        } else {
+        if (goalMap.isNotEmpty()) { // 오늘 목표 이미 있음.
             goal = Nutrition(
                 goalMap["kcal"]!!,
                 goalMap["carbs"]!!,
@@ -53,9 +53,38 @@ class Database {
                 goalMap["sugars"]!!,
                 goalMap["sodium"]!!
             )
+        } else if (goalMap.isEmpty() && map.isEmpty()) { // 어제 오늘 다 비어있음
+            goal = Nutrition(1900.0, 324.0, 55.0, 54.0, 100.0, 2000.0)
+        } else if (goalMap.isEmpty() && map.isNotEmpty()) { // 어제는 있고 오늘은 없음
+            goal = Nutrition(
+                map["kcal"]!!,
+                map["carbs"]!!,
+                map["protein"]!!,
+                map["fat"]!!,
+                map["sugars"]!!,
+                map["sodium"]!!
+            )
         }
 
-        return goal
+        insertGoal(date, goal!!)
+        return goal!!
+    }
+
+    suspend fun initGoal(yesterday: String, today: String) {
+        var goalMap: HashMap<String, Double> = HashMap()
+        val task: Task<DataSnapshot> = database.child(yesterday).get()
+        val deferredDataSnapshot: kotlinx.coroutines.Deferred<DataSnapshot> = task.asDeferred()
+        val data: Iterable<DataSnapshot> = deferredDataSnapshot.await().children
+
+        while (data.iterator().hasNext()) {
+            var snapshot = data.iterator().next()
+
+            if (snapshot.key.toString() == "goal") {
+                goalMap = snapshot.value as HashMap<String, Double>
+            }
+        }
+
+        map = goalMap
     }
 
     suspend fun getTotal(date: String): Nutrition {
@@ -140,6 +169,7 @@ class Database {
     fun deleteFood(date: String, time: String, name: String) {
         database.child(date).child(time).child(name).removeValue()
     }
+
 }
 
 

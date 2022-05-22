@@ -3,6 +3,7 @@ package com.kkwakjavacoding.kcalendar.weightdatabase
 import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class WeightViewModel(application: Application) : AndroidViewModel(application) {
@@ -40,6 +41,10 @@ class WeightViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    fun deleteDate(date: String) {
+        return
+    }
+
     fun searchDatabase(searchQuery: String): LiveData<List<Weight>> {
         return repository.searchDatabase(searchQuery).asLiveData()
     }
@@ -48,4 +53,7 @@ class WeightViewModel(application: Application) : AndroidViewModel(application) 
         return repository.getSameMonth(compare).asLiveData()
     }
 
+    fun searchDate(date: String): LiveData<List<Weight>> {
+        return repository.searchDate(date).asLiveData()
+    }
 }
