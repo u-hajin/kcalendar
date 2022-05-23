@@ -69,6 +69,7 @@ class GraphActivity : AppCompatActivity() {
 
         showBaseCalorie()
         showGoal()
+
     }
 
     private fun showBaseCalorie() {
