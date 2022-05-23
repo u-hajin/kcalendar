@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">kcalendar</string>
+
+    <string name="sharedPref">sharedPref</string>
+    <string name="baseKcal">baseKcal</string>
+    <string name="height">height</string>
+    <string name="activeMass">activeMass</string>
 </resources>

@@ -2,12 +2,20 @@ package com.kkwakjavacoding.kcalendar.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.SystemClock.sleep
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kkwakjavacoding.kcalendar.Dialog
 import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.adapter.RecordAdapter
@@ -15,6 +23,8 @@ import com.kkwakjavacoding.kcalendar.databinding.ActivityKcalendarBinding
 import com.kkwakjavacoding.kcalendar.firebase.Database
 import com.kkwakjavacoding.kcalendar.firebase.Nutrition
 import com.kkwakjavacoding.kcalendar.fooddatabase.Food
+import com.kkwakjavacoding.kcalendar.weightdatabase.Weight
+import com.kkwakjavacoding.kcalendar.weightdatabase.WeightViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -40,7 +50,59 @@ const val DINNER = "dinner"
 class KcalendarActivity : AppCompatActivity() {
     private var inputBuffer: ByteBuffer? = null
     private var pixelArray = IntArray(224 * 224)
-    private val foods = arrayOf("바나나", "달걀프라이", "버거", "피자", "샌드위치")
+    private val foods = arrayOf(
+        "바나나",
+        "계란프라이",
+        "백김치",
+        "북엇국",
+        "불고기",
+        "비빔냉면",
+        "비빔밥",
+        "삼겹살",
+        "삼계탕",
+        "새우볶음밥",
+        "새우튀김",
+        "설렁탕",
+        "송편",
+        "수육",
+        "숙주나물무침",
+        "순대",
+        "순두부찌개",
+        "시금치나물무침",
+        "알밥",
+        "어묵볶음",
+        "연근조림",
+        "열무김치",
+        "오이소박이",
+        "오징어채볶음",
+        "오징어튀김",
+        "우엉조림",
+        "유부초밥",
+        "육개장",
+        "잔치국수",
+        "전복죽",
+        "제육볶음",
+        "조개구이",
+        "조기구이",
+        "족발",
+        "주꾸미볶음",
+        "주먹밥",
+        "짜장면",
+        "짬뽕",
+        "쫄면",
+        "찜닭",
+        "추어탕",
+        "칼국수",
+        "코다리조림",
+        "콩국수",
+        "콩나물국",
+        "파김치",
+        "파전",
+        "호박전",
+        "호박죽",
+        "황태구이",
+        "훈제오리"
+    )
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
 
@@ -53,7 +115,12 @@ class KcalendarActivity : AppCompatActivity() {
     private var date = ""
     private var time = BREAKFAST
     private var yesterday = ""
+    private var installDate = ""
+    private var today = ""
+    private var weightFlag: Boolean = false
 
+
+    private lateinit var weightViewModel: WeightViewModel
     lateinit var recordAdapter: RecordAdapter
     private val db = Database()
     private val context = this
@@ -63,6 +130,14 @@ class KcalendarActivity : AppCompatActivity() {
         binding = ActivityKcalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        weightViewModel = ViewModelProvider(
+            this,
+            WeightViewModel.Factory(application)
+        )[WeightViewModel::class.java]
+
+        getInstallDate()
+        setMinMaxDate()
+
         interpreter = Interpreter(loadModel(), null)
 
         binding.breakfastBtn.setOnClickListener(ButtonListener())
@@ -70,9 +145,35 @@ class KcalendarActivity : AppCompatActivity() {
         binding.dinnerBtn.setOnClickListener(ButtonListener())
 
         calendarListener()
+        imgListener()
 
         val currentDate = Calendar.getInstance().time
         date = SimpleDateFormat("yyyy-MM-dd").format(currentDate)
+        today = date
+
+        val beforeDate = Calendar.getInstance()
+        beforeDate.add(Calendar.DAY_OF_YEAR, -1)
+
+        var timeToDate = beforeDate.time
+        yesterday = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
+
+        foodAddButtonListener()
+//        checkWeightExists()
+        initWeight()
+
+        MainScope().launch {
+            withContext(Dispatchers.Default) {
+                db.initGoal(yesterday, today)
+            }
+            getTotalRecord()
+            getGoalRecord()
+            setProgressBar()
+        }
+        initRecyclerView()
+        buttonListener()
+    }
+
+    private fun foodAddButtonListener() {
 
         val beforeDate = Calendar.getInstance()
         beforeDate.add(Calendar.DAY_OF_YEAR, -1)
@@ -82,21 +183,78 @@ class KcalendarActivity : AppCompatActivity() {
         
         binding.apply {
             foodAddBtn.setOnClickListener {
-                openGallery()
+                val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
+                val bottomSheetDialog = BottomSheetDialog(this@KcalendarActivity)
+                bottomSheetDialog.setContentView(bottomSheetView)
+                bottomSheetDialog.show()
+
+                bottomSheetDialog.findViewById<LinearLayout>(R.id.camera_section)
+                    ?.setOnClickListener {
+                        openCamera()
+                    }
+                bottomSheetDialog.findViewById<LinearLayout>(R.id.gallery_section)
+                    ?.setOnClickListener {
+                        openGallery()
+                    }
             }
         }
+    }
 
-        getTotalRecord()
-        getGoalRecord()
-        setProgressBar()
-        initRecyclerView()
-        buttonListener()
+    private fun setMinMaxDate() {
+        binding.calendarView.minDate = getInstallDate()
+        binding.calendarView.maxDate = Calendar.getInstance().time.time
+    }
+
+    private fun getInstallDate(): Long {
+        var date = Date(this.packageManager.getPackageInfo(this.packageName, 0).firstInstallTime)
+        installDate = SimpleDateFormat("yyyy-MM-dd").format(date)
+
+        return date.time
+    }
+
+    private fun initWeight() { // 처음 설치, 처음 실행 함수 필요
+        weightViewModel.searchDate(yesterday).observe(this) {
+            if (it.isNotEmpty()) {
+                setWeight(it[0].weight.toString())
+            }
+        }
+    }
+
+    private fun checkWeightExists() {
+        weightViewModel.searchDate(today).observe(this) {
+            weightFlag = it.isNotEmpty()
+        }
+    }
+
+    private fun setWeight(weight: String) {
+        weightViewModel.addWeight(Weight(today, weight.toDouble()))
     }
 
     private fun buttonListener() {
+
         binding.weightBtn.setOnClickListener {
             val dialog = Dialog(this)
-            dialog.addWeightDialog()
+            dialog.showWeightInputDialog()
+
+            dialog.setOnClickedListener(object : Dialog.ButtonClickListener {
+                override fun onClicked(weight: String) {
+                    checkWeightExists()
+                    setWeight(weight)
+                }
+            })
+        }
+    }
+
+    private fun imgListener() {
+        binding.GraphImg.setOnClickListener {
+            val intent = Intent(this, GraphActivity::class.java)
+            intent.putExtra("date", today)
+            startActivity(intent)
+        }
+        binding.GraphText.setOnClickListener {
+            val intent = Intent(this, GraphActivity::class.java)
+            intent.putExtra("date", today)
+            startActivity(intent)
         }
     }
 
@@ -140,9 +298,9 @@ class KcalendarActivity : AppCompatActivity() {
             binding.lunchBtn.setBackgroundResource(R.color.pastel_green)
             binding.dinnerBtn.setBackgroundResource(R.drawable.right_round)
 
-            getRecord()
             getGoalRecord()
             getTotalRecord()
+            getRecord()
             setProgressBar()
         }
     }
@@ -159,7 +317,52 @@ class KcalendarActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_GALLERY)
     }
 
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        when {
+            (ActivityCompat.checkSelfPermission(
+                this@KcalendarActivity,
+                android.Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED) -> {
+                startActivityForResult(intent, REQUEST_CAMERA)
+            }
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                android.Manifest.permission.CAMERA
+            ) -> {
+                cameraAlertDlg()
+            }
+            else -> {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.CAMERA),
+                    REQUEST_CAMERA
+                )
+            }
+        }
+    }
+
+    private fun cameraAlertDlg() {
+        val builder = AlertDialog.Builder(this@KcalendarActivity)
+        builder.setMessage("반드시 카메라 권한이 허용 되어야 합니다")
+            .setTitle("권한 체크")
+            .setPositiveButton("확인") { _, _ ->
+                ActivityCompat.requestPermissions(
+                    this@KcalendarActivity,
+                    arrayOf(android.Manifest.permission.CAMERA),
+                    REQUEST_CAMERA
+                )
+            }
+            .setNegativeButton("취소") { dlg, _ ->
+                dlg.dismiss()
+            }
+        val dlg = builder.create()
+        dlg.show()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_GALLERY) {
             bitmapImage =
                 MediaStore.Images.Media.getBitmap(contentResolver, data?.data)
@@ -170,8 +373,16 @@ class KcalendarActivity : AppCompatActivity() {
             intent2.putExtra("time", time)
             startActivity(intent2)
         } else if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA) {
-            super.onActivityResult(requestCode, resultCode, data)
+            bitmapImage =
+                data?.extras?.get("data") as Bitmap
+            predict()
+            val intent2 = Intent(this, FoodCustomActivity::class.java)
+            intent2.putExtra("result", predictResult)
+            intent2.putExtra("date", date)
+            intent2.putExtra("time", time)
+            startActivity(intent2)
         }
+
     }
 
     private fun loadModel(): ByteBuffer {
@@ -215,7 +426,7 @@ class KcalendarActivity : AppCompatActivity() {
         inputBuffer!!.order(ByteOrder.nativeOrder())
         convertBitmapToByteBuffer(resizedBitmap)
 
-        val output = Array(1) { FloatArray(5) }
+        val output = Array(1) { FloatArray(51) }
 
         interpreter.run(inputBuffer, output)
 
@@ -240,7 +451,7 @@ class KcalendarActivity : AppCompatActivity() {
         recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
             override fun OnItemClick(data: Food) {
                 val foodInfoDialog = Dialog(context)
-                foodInfoDialog.showFoodInfoDialog(data)
+                var flag = foodInfoDialog.showFoodInfoDialog(date, time, data)
             }
 
             override fun deleteClick(data: Food, position: Int) {
@@ -293,6 +504,7 @@ class KcalendarActivity : AppCompatActivity() {
     private fun getGoalRecord() {
         MainScope().launch {
             var goal: Nutrition
+
             withContext(Dispatchers.Default) {
                 goal = db.getGoal(date)
             }
@@ -331,8 +543,8 @@ class KcalendarActivity : AppCompatActivity() {
             var goal: Nutrition
             var total: Nutrition
             withContext(Dispatchers.Default) {
-                goal = db.getGoal(date)
                 total = db.getTotal(date)
+                goal = db.getGoal(date)!!
             }
             binding.apply {
                 kcalBar.progress =

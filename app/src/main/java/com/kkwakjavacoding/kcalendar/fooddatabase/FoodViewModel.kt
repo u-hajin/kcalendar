@@ -24,13 +24,13 @@ class FoodViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun updateUser(food: Food) {
+    fun updateFood(food: Food) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateFood(food)
         }
     }
 
-    fun deleteUser(food: Food) {
+    fun deleteFood(food: Food) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteFood(food)
         }

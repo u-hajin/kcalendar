@@ -3,6 +3,7 @@ package com.kkwakjavacoding.kcalendar.fooddatabase
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.firebase.database.IgnoreExtraProperties
+import java.io.Serializable
 
 @IgnoreExtraProperties
 @Entity(tableName = "food_table")
@@ -20,4 +21,4 @@ data class Food(
     val fat: Double?,
     val sugars: Double?,
     val sodium: Double?,
-)
+) : Serializable
