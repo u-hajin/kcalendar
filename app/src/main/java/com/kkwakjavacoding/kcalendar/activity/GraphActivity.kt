@@ -110,7 +110,12 @@ class GraphActivity : AppCompatActivity() {
 
     private fun buttonListener() {
 
-        binding.CalendarImg.setOnClickListener {
+        binding.calendarImg.setOnClickListener {
+            val intent = Intent(this, KcalendarActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.calendarText.setOnClickListener {
             val intent = Intent(this, KcalendarActivity::class.java)
             startActivity(intent)
         }
