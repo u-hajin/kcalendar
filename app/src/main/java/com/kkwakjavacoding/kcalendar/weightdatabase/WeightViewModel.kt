@@ -41,16 +41,8 @@ class WeightViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun deleteDate(date: String) {
-        return
-    }
-
     fun searchDatabase(searchQuery: String): LiveData<List<Weight>> {
         return repository.searchDatabase(searchQuery).asLiveData()
-    }
-
-    fun getSameMonth(compare: String): LiveData<List<Weight>> {
-        return repository.getSameMonth(compare).asLiveData()
     }
 
     fun searchDate(date: String): LiveData<List<Weight>> {

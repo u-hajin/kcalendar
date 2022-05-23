@@ -1,6 +1,6 @@
 package com.kkwakjavacoding.kcalendar.activity
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.AdapterView
@@ -11,11 +11,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.kkwakjavacoding.kcalendar.databinding.ActivityGraphBinding
-import android.graphics.Color
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
@@ -30,7 +27,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.min
 
 class GraphActivity : AppCompatActivity() {
 
@@ -71,16 +67,16 @@ class GraphActivity : AppCompatActivity() {
         setMonthSpinner()
         setMonthSpinnerListener()
 
+        showBaseCalorie()
         showGoal()
+    }
 
-        weightViewModel.addWeight(Weight("2022-05-22", 60.0))
-        weightViewModel.addWeight(Weight("2022-05-23", 60.0))
-        weightViewModel.addWeight(Weight("2022-05-24", 61.0))
-        weightViewModel.addWeight(Weight("2022-05-25", 65.0))
-        weightViewModel.addWeight(Weight("2022-05-26", 65.0))
-        weightViewModel.addWeight(Weight("2022-05-27", 69.0))
-        weightViewModel.addWeight(Weight("2022-05-28", 68.0))
-        weightViewModel.addWeight(Weight("2022-05-29", 67.0))
+    private fun showBaseCalorie() {
+        val sharedPreferences =
+            getSharedPreferences(R.string.sharedPref.toString(), Context.MODE_PRIVATE)
+        val baseCalorie = sharedPreferences.getInt(R.string.baseKcal.toString(), 0)
+
+        binding.baseKcal.text = " $baseCalorie"
     }
 
     fun showGoal() {
@@ -94,6 +90,7 @@ class GraphActivity : AppCompatActivity() {
                 goal = database.getGoal(date)
             }
             // Firebase에서 읽어온 값을 사용하는 곳
+            binding.goalKcal.text = goal.kcal.toInt().toString()
             binding.goalCarbs.text = goal.carbs.toInt().toString()
             binding.carbsPercentage.text =
                 "(" + (goal.carbs / 324).times(100).toInt().toString() + "%)"
@@ -139,11 +136,6 @@ class GraphActivity : AppCompatActivity() {
                         weight.date.replace(dayRegex, "").toFloat(),
                         weight.weight.toFloat()
                     )
-                )
-                Log.i(
-                    "CHECK",
-                    weight.date.replace(dayRegex, "").toFloat()
-                        .toString() + "/" + weight.weight.toString()
                 )
             }
 
@@ -191,48 +183,51 @@ class GraphActivity : AppCompatActivity() {
         lineDataSet.add(set)
 
         lineData = LineData(lineDataSet)
-        lineData.setValueTextSize(12f)
+//        lineData.setValueTextSize(12f)
 //        lineData.setValueTextColor(R.color.black)
 
-        set.run {
-            lineWidth = 2f
-            setDrawValues(true)
-            color = ContextCompat.getColor(application, R.color.deep_green)
-//            highLightColor = R.color.deep_green
-            setDrawCircles(true)
-            setDrawCircleHole(true)
-            setCircleColor(R.color.black)
-            circleHoleColor = ContextCompat.getColor(application, R.color.black)
-            circleHoleRadius = 7f
-            mode = LineDataSet.Mode.LINEAR
-        }
+
+        set.lineWidth = 2f
+        set.setDrawValues(false)
+        set.color = ContextCompat.getColor(application, R.color.deep_green)
+//        set.highLightColor = R.color.deep_green
+        set.setDrawCircles(true)
+        set.setDrawCircleHole(true)
+        set.setCircleColor(R.color.black)
+        set.circleHoleColor = ContextCompat.getColor(application, R.color.black)
+        set.circleHoleRadius = 7f
+        set.mode = LineDataSet.Mode.LINEAR
+
+        // 클릭하면 highlight에서 체중 보여주기
 
         // x축 설정
         val xAxis = chart.xAxis
         xAxis.setDrawLabels(true)
-        xAxis.axisMaximum = 31f
-        xAxis.axisMinimum = 1f
-        xAxis.labelCount = 10
+        xAxis.axisMaximum = maxDay
+        xAxis.axisMinimum = minDay
+        xAxis.labelCount = (maxDay - minDay).toInt()
+        if (xAxis.labelCount > 10) {
+            xAxis.labelCount = 10
+        }
         xAxis.setDrawGridLines(false)
 
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawLabels(true)
         xAxis.setDrawAxisLine(true)
 
-        chart.run {
-            setNoDataText("해당 월의 체중 데이터가 없습니다.")
-            setNoDataTextColor(R.color.deep_green)
+        chart.setNoDataText("해당 월의 체중 데이터가 없습니다.")
+        chart.setNoDataTextColor(R.color.deep_green)
 
-            setDrawGridBackground(false)
-            legend.isEnabled = false
+        chart.setDrawGridBackground(false)
+        chart.legend.isEnabled = false
 
-            // 오른쪽 y축 안 보이게
-            axisRight.isEnabled = false
+        // 오른쪽 y축 안 보이게
+        chart.axisRight.isEnabled = false
 
-            description.isEnabled = false
-            data = lineData
-            invalidate()
-        }
+        chart.description.isEnabled = false
+        chart.data = lineData
+        chart.invalidate()
+
     }
 
 }

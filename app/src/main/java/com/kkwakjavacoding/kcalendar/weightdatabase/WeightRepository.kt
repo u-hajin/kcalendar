@@ -18,16 +18,8 @@ class WeightRepository(private val weightDao: WeightDao) {
         weightDao.deleteWeight(weight)
     }
 
-    fun deleteDate(date: String) {
-        return weightDao.deleteDate(date)
-    }
-
     fun searchDatabase(searchQuery: String): Flow<List<Weight>> {
         return weightDao.searchDatabase(searchQuery)
-    }
-
-    fun getSameMonth(compare: String): Flow<List<Weight>> {
-        return weightDao.getSameMonth(compare)
     }
 
     fun searchDate(date: String): Flow<List<Weight>> {
