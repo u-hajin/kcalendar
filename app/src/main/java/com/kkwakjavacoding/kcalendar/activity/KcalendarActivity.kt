@@ -119,6 +119,7 @@ class KcalendarActivity : AppCompatActivity() {
     private var today = ""
     private var weightFlag: Boolean = false
 
+
     private lateinit var weightViewModel: WeightViewModel
     lateinit var recordAdapter: RecordAdapter
     private val db = Database()
@@ -173,6 +174,13 @@ class KcalendarActivity : AppCompatActivity() {
     }
 
     private fun foodAddButtonListener() {
+
+        val beforeDate = Calendar.getInstance()
+        beforeDate.add(Calendar.DAY_OF_YEAR, -1)
+
+        var timeToDate = beforeDate.time
+        yesterday = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
+        
         binding.apply {
             foodAddBtn.setOnClickListener {
                 val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
