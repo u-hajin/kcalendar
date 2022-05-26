@@ -1,9 +1,11 @@
 package com.kkwakjavacoding.kcalendar.activity
 
-import android.app.Activity
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock.sleep
 import android.provider.MediaStore
@@ -13,6 +15,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -121,9 +124,11 @@ class KcalendarActivity : AppCompatActivity() {
 
 
     private lateinit var weightViewModel: WeightViewModel
-    lateinit var recordAdapter: RecordAdapter
+    private lateinit var recordAdapter: RecordAdapter
     private val db = Database()
     private val context = this
+
+    var message = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -157,8 +162,9 @@ class KcalendarActivity : AppCompatActivity() {
         var timeToDate = beforeDate.time
         yesterday = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
 
+        checkWeightExists()
+        setMessage()
         foodAddButtonListener()
-//        checkWeightExists()
         initWeight()
 
         MainScope().launch {
@@ -180,7 +186,7 @@ class KcalendarActivity : AppCompatActivity() {
 
         var timeToDate = beforeDate.time
         yesterday = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
-        
+
         binding.apply {
             foodAddBtn.setOnClickListener {
                 val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
@@ -563,5 +569,98 @@ class KcalendarActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun setMessage() {
+
+        MainScope().launch {
+            var total: Nutrition
+            var goal: Nutrition
+            withContext(Dispatchers.Default) {
+                total = db.getTotal(yesterday)
+                goal = db.getGoal(yesterday)
+            }
+
+            var lackList: ArrayList<String> = arrayListOf()
+            var fullList: ArrayList<String> = arrayListOf()
+
+            if (total.kcal < goal.kcal) {
+                lackList.add("칼로리")
+            } else {
+                fullList.add("칼로리")
+            }
+            if (total.carbs < goal.carbs) {
+                lackList.add("탄수화물")
+            } else {
+                fullList.add("탄수화물")
+            }
+            if (total.protein < goal.protein) {
+                lackList.add("단백질")
+            } else {
+                fullList.add("단백질")
+            }
+            if (total.fat < goal.fat) {
+                lackList.add("지방")
+            } else {
+                fullList.add("지방")
+            }
+            if (total.sugars < goal.sugars) {
+                lackList.add("당류")
+            } else {
+                fullList.add("당류")
+            }
+            if (total.sodium < goal.sodium) {
+                lackList.add("나트륨")
+            } else {
+                fullList.add("나트륨")
+            }
+
+            if (lackList.isNotEmpty()) {
+                message += "\n부족: "
+                message += lackList.joinToString(separator = ", ")
+            }
+
+            if (fullList.isNotEmpty()) {
+                message += "\n과잉: "
+                message += fullList.joinToString(separator = ", ")
+            }
+
+            setNotification()
+        }
+    }
+
+    private fun setNotification() {
+
+        val id = "MyChannel"
+        val name = "TimeCheckChannel"
+        val notificationChannel =
+            NotificationChannel(id, name, NotificationManager.IMPORTANCE_DEFAULT)
+        notificationChannel.enableVibration(true)
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.BLUE
+        notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+
+        val builder = NotificationCompat.Builder(this, id)
+            .setSmallIcon(R.drawable.ic_outline_access_alarms_24)
+            .setContentTitle("어제의 기록!")
+            .setContentText(message)
+            .setAutoCancel(true)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+
+        val intent = Intent(this, KcalendarActivity::class.java)
+        intent.putExtra("time", message)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+        val pendingIntent =
+            PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        builder.setContentIntent(pendingIntent)
+
+        val notification = builder.build()
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        manager.createNotificationChannel(notificationChannel)
+        manager.notify(10, notification)
+
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -62,7 +63,6 @@ class FoodEditActivity : AppCompatActivity() {
         )[FoodViewModel::class.java]
 
         showPredictResult()
-
     }
 
     inner class QuantityWatcher : TextWatcher {
@@ -101,8 +101,7 @@ class FoodEditActivity : AppCompatActivity() {
     }
 
     private fun showPredictResult() { // 인식 결과를 음식 정보 db에서 찾아 화면에 제공
-        foodViewModel.searchName("$food.name").observe(this) {
-            customFood = food.copy()
+        foodViewModel.searchName(food.name).observe(this) {
             for (i in it) {
                 if (i.brand == food.brand) {
                     food = i.copy()
@@ -126,8 +125,8 @@ class FoodEditActivity : AppCompatActivity() {
         customFood = Food(
             0,
             food.name,
-            food.classification,
             food.brand,
+            food.classification,
             round(food.serving.times(quantity) * 100) / 100,
             food.unit,
             round(food.kcal.times(quantity) * 100) / 100,

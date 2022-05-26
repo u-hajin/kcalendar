@@ -307,8 +307,8 @@ class FoodCustomActivity : AppCompatActivity() {
         customFood = Food(
             0,
             food.name,
-            food.classification,
             food.brand,
+            food.classification,
             round(food.serving.times(quantity) * 100) / 100,
             food.unit,
             round(food.kcal.times(quantity) * 100) / 100,
