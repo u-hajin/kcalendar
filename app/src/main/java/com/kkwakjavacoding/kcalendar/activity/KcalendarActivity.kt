@@ -7,9 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.os.SystemClock.sleep
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
@@ -163,9 +161,7 @@ class KcalendarActivity : AppCompatActivity() {
         yesterday = SimpleDateFormat("yyyy-MM-dd").format(timeToDate)
 
         checkWeightExists()
-        setMessage()
         foodAddButtonListener()
-        initWeight()
 
         MainScope().launch {
             withContext(Dispatchers.Default) {
@@ -229,6 +225,10 @@ class KcalendarActivity : AppCompatActivity() {
     private fun checkWeightExists() {
         weightViewModel.searchDate(today).observe(this) {
             weightFlag = it.isNotEmpty()
+            if (it.isEmpty()) {
+                setMessage()
+                initWeight()
+            }
         }
     }
 
@@ -244,7 +244,6 @@ class KcalendarActivity : AppCompatActivity() {
 
             dialog.setOnClickedListener(object : Dialog.ButtonClickListener {
                 override fun onClicked(weight: String) {
-                    checkWeightExists()
                     setWeight(weight)
                 }
             })
