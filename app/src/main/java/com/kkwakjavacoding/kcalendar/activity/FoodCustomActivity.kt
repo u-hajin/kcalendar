@@ -31,7 +31,7 @@ class FoodCustomActivity : AppCompatActivity() {
     private lateinit var foodViewModel: FoodViewModel
     private lateinit var weightViewModel: WeightViewModel
     private lateinit var checkBoxList: ArrayList<CheckBox>
-    private lateinit var food: Food
+    private var food: Food = Food(0, "", "", "", 0.0, "", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     private lateinit var customFood: Food
     private var brand: String = ""
     private var brandList: ArrayList<String> = ArrayList()
