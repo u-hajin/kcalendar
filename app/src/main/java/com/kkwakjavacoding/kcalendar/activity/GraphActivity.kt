@@ -19,7 +19,6 @@ import com.github.mikephil.charting.data.Entry
 import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.firebase.Database
 import com.kkwakjavacoding.kcalendar.firebase.Nutrition
-import com.kkwakjavacoding.kcalendar.weightdatabase.Weight
 import com.kkwakjavacoding.kcalendar.weightdatabase.WeightViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -148,6 +147,7 @@ class GraphActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 minDay = it[0].date.replace(dayRegex, "").toFloat()
                 maxDay = it[it.size - 1].date.replace(dayRegex, "").toFloat()
+                chart.clear()
                 drawGraph()
             } else {
                 chart.clear()
@@ -174,6 +174,7 @@ class GraphActivity : AppCompatActivity() {
                     }
                     searchDate = "$year-$month"
 
+                    chartData.clear()
                     getWeight()
                 }
 
@@ -209,9 +210,10 @@ class GraphActivity : AppCompatActivity() {
         // x축 설정
         val xAxis = chart.xAxis
         xAxis.setDrawLabels(true)
+        xAxis.granularity = 1f
         xAxis.axisMaximum = maxDay
         xAxis.axisMinimum = minDay
-        xAxis.labelCount = (maxDay - minDay).toInt()
+        xAxis.labelCount = (maxDay - minDay + 1).toInt()
         if (xAxis.labelCount > 10) {
             xAxis.labelCount = 10
         }
