@@ -120,6 +120,7 @@ class KcalendarActivity : AppCompatActivity() {
     private var installDate = ""
     private var today = ""
     private var weightFlag: Boolean = false
+    private var graphMonth = 0
 
 
     private lateinit var weightViewModel: WeightViewModel
@@ -152,8 +153,10 @@ class KcalendarActivity : AppCompatActivity() {
         imgListener()
 
         val currentDate = Calendar.getInstance().time
+
         date = SimpleDateFormat("yyyy-MM-dd").format(currentDate)
         today = date
+        graphMonth = SimpleDateFormat("M").format(currentDate).toInt()
 
         val beforeDate = Calendar.getInstance()
         beforeDate.add(Calendar.DAY_OF_YEAR, -1)
@@ -249,11 +252,13 @@ class KcalendarActivity : AppCompatActivity() {
         binding.GraphImg.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", today)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
         binding.GraphText.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", today)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
     }
@@ -450,7 +455,7 @@ class KcalendarActivity : AppCompatActivity() {
 
         recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
             override fun OnItemClick(data: Food) {
-                val foodInfoDialog = Dialog(context)
+                val foodInfoDialog = Dialog(context, today, this@KcalendarActivity, application)
                 var flag = foodInfoDialog.showFoodInfoDialog(date, time, data)
             }
 
@@ -580,32 +585,32 @@ class KcalendarActivity : AppCompatActivity() {
 
             if (total.kcal < goal.kcal) {
                 lackList.add("칼로리")
-            } else {
+            } else if(total.kcal > goal.kcal) {
                 fullList.add("칼로리")
             }
             if (total.carbs < goal.carbs) {
                 lackList.add("탄수화물")
-            } else {
+            } else if(total.carbs > goal.carbs){
                 fullList.add("탄수화물")
             }
             if (total.protein < goal.protein) {
                 lackList.add("단백질")
-            } else {
+            } else if(total.protein > goal.protein){
                 fullList.add("단백질")
             }
             if (total.fat < goal.fat) {
                 lackList.add("지방")
-            } else {
+            } else if(total.fat > goal.fat){
                 fullList.add("지방")
             }
             if (total.sugars < goal.sugars) {
                 lackList.add("당류")
-            } else {
+            } else if(total.sugars > goal.sugars){
                 fullList.add("당류")
             }
             if (total.sodium < goal.sodium) {
                 lackList.add("나트륨")
-            } else {
+            } else if(total.sodium > goal.sodium){
                 fullList.add("나트륨")
             }
 
@@ -635,7 +640,7 @@ class KcalendarActivity : AppCompatActivity() {
         notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
 
         val builder = NotificationCompat.Builder(this, id)
-            .setSmallIcon(R.drawable.ic_outline_access_alarms_24)
+            .setSmallIcon(R.drawable.ic_outline_event_note_24)
             .setContentTitle("어제의 기록!")
             .setContentText(message)
             .setAutoCancel(true)
