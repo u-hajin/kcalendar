@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kkwakjavacoding.kcalendar.Dialog
@@ -239,14 +240,8 @@ class KcalendarActivity : AppCompatActivity() {
     private fun buttonListener() {
 
         binding.weightBtn.setOnClickListener {
-            val dialog = Dialog(this)
+            val dialog = Dialog(this, today, owner = this, application)
             dialog.showWeightInputDialog()
-
-            dialog.setOnClickedListener(object : Dialog.ButtonClickListener {
-                override fun onClicked(weight: String) {
-                    setWeight(weight)
-                }
-            })
         }
     }
 
