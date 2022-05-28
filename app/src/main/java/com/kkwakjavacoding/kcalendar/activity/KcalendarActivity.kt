@@ -584,32 +584,32 @@ class KcalendarActivity : AppCompatActivity() {
 
             if (total.kcal < goal.kcal) {
                 lackList.add("칼로리")
-            } else {
+            } else if(total.kcal > goal.kcal) {
                 fullList.add("칼로리")
             }
             if (total.carbs < goal.carbs) {
                 lackList.add("탄수화물")
-            } else {
+            } else if(total.carbs > goal.carbs){
                 fullList.add("탄수화물")
             }
             if (total.protein < goal.protein) {
                 lackList.add("단백질")
-            } else {
+            } else if(total.protein > goal.protein){
                 fullList.add("단백질")
             }
             if (total.fat < goal.fat) {
                 lackList.add("지방")
-            } else {
+            } else if(total.fat > goal.fat){
                 fullList.add("지방")
             }
             if (total.sugars < goal.sugars) {
                 lackList.add("당류")
-            } else {
+            } else if(total.sugars > goal.sugars){
                 fullList.add("당류")
             }
             if (total.sodium < goal.sodium) {
                 lackList.add("나트륨")
-            } else {
+            } else if(total.sodium > goal.sodium){
                 fullList.add("나트륨")
             }
 
@@ -639,7 +639,7 @@ class KcalendarActivity : AppCompatActivity() {
         notificationChannel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
 
         val builder = NotificationCompat.Builder(this, id)
-            .setSmallIcon(R.drawable.ic_outline_access_alarms_24)
+            .setSmallIcon(R.drawable.ic_outline_event_note_24)
             .setContentTitle("어제의 기록!")
             .setContentText(message)
             .setAutoCancel(true)
