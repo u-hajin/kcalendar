@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kkwakjavacoding.kcalendar.Dialog
@@ -120,6 +119,7 @@ class KcalendarActivity : AppCompatActivity() {
     private var installDate = ""
     private var today = ""
     private var weightFlag: Boolean = false
+    private var graphMonth = 0
 
 
     private lateinit var weightViewModel: WeightViewModel
@@ -152,8 +152,10 @@ class KcalendarActivity : AppCompatActivity() {
         imgListener()
 
         val currentDate = Calendar.getInstance().time
+
         date = SimpleDateFormat("yyyy-MM-dd").format(currentDate)
         today = date
+        graphMonth = SimpleDateFormat("M").format(currentDate).toInt()
 
         val beforeDate = Calendar.getInstance()
         beforeDate.add(Calendar.DAY_OF_YEAR, -1)
@@ -249,11 +251,13 @@ class KcalendarActivity : AppCompatActivity() {
         binding.GraphImg.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", today)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
         binding.GraphText.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", today)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
     }
@@ -450,7 +454,7 @@ class KcalendarActivity : AppCompatActivity() {
 
         recordAdapter.itemClickListener = object : RecordAdapter.OnItemClickListener {
             override fun OnItemClick(data: Food) {
-                val foodInfoDialog = Dialog(context)
+                val foodInfoDialog = Dialog(context, today, this@KcalendarActivity, application)
                 var flag = foodInfoDialog.showFoodInfoDialog(date, time, data)
             }
 

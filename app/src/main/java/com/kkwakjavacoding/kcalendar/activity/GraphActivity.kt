@@ -69,6 +69,8 @@ class GraphActivity : AppCompatActivity() {
         showBaseCalorie()
         showGoal()
 
+        binding.monthSpinner.setSelection(intent.getIntExtra("month", 0) - 1)
+
     }
 
     private fun showBaseCalorie() {
