@@ -179,6 +179,13 @@ class KcalendarActivity : AppCompatActivity() {
         buttonListener()
     }
 
+    private fun firstWeightInput() {
+        if (installDate == today && !weightFlag) {
+            val dialog = Dialog(this, today, owner = this, application)
+            dialog.showWeightInputDialog(true)
+        }
+    }
+
     private fun foodAddButtonListener() {
 
         val beforeDate = Calendar.getInstance()
@@ -218,7 +225,7 @@ class KcalendarActivity : AppCompatActivity() {
         return date.time
     }
 
-    private fun initWeight() { // 처음 설치, 처음 실행 함수 필요
+    private fun initWeight() {
         weightViewModel.searchDate(yesterday).observe(this) {
             if (it.isNotEmpty()) {
                 setWeight(it[0].weight.toString())
@@ -229,7 +236,8 @@ class KcalendarActivity : AppCompatActivity() {
     private fun checkWeightExists() {
         weightViewModel.searchDate(today).observe(this) {
             weightFlag = it.isNotEmpty()
-            if (it.isEmpty()) {
+            firstWeightInput()
+            if (it.isEmpty() && installDate != today) {
                 setMessage()
                 initWeight()
             }
@@ -585,32 +593,32 @@ class KcalendarActivity : AppCompatActivity() {
 
             if (total.kcal < goal.kcal) {
                 lackList.add("칼로리")
-            } else if(total.kcal > goal.kcal) {
+            } else if (total.kcal > goal.kcal) {
                 fullList.add("칼로리")
             }
             if (total.carbs < goal.carbs) {
                 lackList.add("탄수화물")
-            } else if(total.carbs > goal.carbs){
+            } else if (total.carbs > goal.carbs) {
                 fullList.add("탄수화물")
             }
             if (total.protein < goal.protein) {
                 lackList.add("단백질")
-            } else if(total.protein > goal.protein){
+            } else if (total.protein > goal.protein) {
                 fullList.add("단백질")
             }
             if (total.fat < goal.fat) {
                 lackList.add("지방")
-            } else if(total.fat > goal.fat){
+            } else if (total.fat > goal.fat) {
                 fullList.add("지방")
             }
             if (total.sugars < goal.sugars) {
                 lackList.add("당류")
-            } else if(total.sugars > goal.sugars){
+            } else if (total.sugars > goal.sugars) {
                 fullList.add("당류")
             }
             if (total.sodium < goal.sodium) {
                 lackList.add("나트륨")
-            } else if(total.sodium > goal.sodium){
+            } else if (total.sodium > goal.sodium) {
                 fullList.add("나트륨")
             }
 

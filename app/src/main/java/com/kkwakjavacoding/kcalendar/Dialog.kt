@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -68,6 +69,12 @@ class Dialog(
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.weight_input_dialog)
         dialog.setCancelable(false) // 바깥 화면 누르면 닫힘.
+
+        if (flag) {
+            dialog.findViewById<Button>(R.id.weightInputCancelBtn).visibility = View.GONE
+        } else {
+            dialog.findViewById<Button>(R.id.weightInputCancelBtn).visibility = View.VISIBLE
+        }
 
         dialog.findViewById<Button>(R.id.weightInputSaveBtn).setOnClickListener {
             var weightInput = dialog.findViewById<EditText>(R.id.weightInput).text.toString()
