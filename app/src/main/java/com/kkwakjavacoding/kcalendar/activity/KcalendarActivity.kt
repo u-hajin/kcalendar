@@ -55,37 +55,19 @@ class KcalendarActivity : AppCompatActivity() {
     private val foods = arrayOf(
         "바나나",
         "계란프라이",
-        "백김치",
-        "북엇국",
-        "불고기",
-        "비빔냉면",
-        "비빔밥",
-        "삼겹살",
-        "삼계탕",
-        "새우볶음밥",
-        "새우튀김",
-        "설렁탕",
-        "송편",
-        "수육",
-        "숙주나물무침",
+        "햄버거",
+        "피자",
+        "샌드위치",
         "순대",
         "순두부찌개",
-        "시금치나물무침",
         "알밥",
         "어묵볶음",
-        "연근조림",
-        "열무김치",
-        "오이소박이",
-        "오징어채볶음",
         "오징어튀김",
-        "우엉조림",
         "유부초밥",
         "육개장",
         "잔치국수",
         "전복죽",
         "제육볶음",
-        "조개구이",
-        "조기구이",
         "족발",
         "주꾸미볶음",
         "주먹밥",
@@ -93,17 +75,29 @@ class KcalendarActivity : AppCompatActivity() {
         "짬뽕",
         "쫄면",
         "찜닭",
-        "추어탕",
         "칼국수",
-        "코다리조림",
         "콩국수",
         "콩나물국",
-        "파김치",
-        "파전",
         "호박전",
-        "호박죽",
-        "황태구이",
-        "훈제오리"
+        "훈제오리",
+        "라면",
+        "만두",
+        "김밥",
+        "닭볶음탕",
+        "비빔밥",
+        "잡채",
+        "미역국",
+        "라볶이",
+        "배추김치",
+        "삼겹살",
+        "불고기",
+        "떡갈비",
+        "두부김치",
+        "물냉면",
+        "비빔냉면",
+        "오이소박이",
+        "수제비",
+        "갈비구이"
     )
     private lateinit var interpreter: Interpreter
     private var predictResult: String? = null
@@ -439,7 +433,7 @@ class KcalendarActivity : AppCompatActivity() {
         inputBuffer!!.order(ByteOrder.nativeOrder())
         convertBitmapToByteBuffer(resizedBitmap)
 
-        val output = Array(1) { FloatArray(51) }
+        val output = Array(1) { FloatArray(45) }
 
         interpreter.run(inputBuffer, output)
 
