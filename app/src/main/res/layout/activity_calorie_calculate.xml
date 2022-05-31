@@ -52,7 +52,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/edge2"
                 android:ems="10"
-                android:inputType="number" />
+                android:fontFamily="@font/pretendard_regular"
+                android:inputType="number"
+                android:textAlignment="center" />
         </LinearLayout>
 
     </LinearLayout>
