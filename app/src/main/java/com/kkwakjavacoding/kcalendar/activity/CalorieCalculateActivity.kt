@@ -19,7 +19,7 @@ class CalorieCalculateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCalorieCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        
         date = intent.getStringExtra("date")!!
         month = intent.getIntExtra("month", 0)
 
