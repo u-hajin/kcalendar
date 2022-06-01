@@ -9,14 +9,17 @@ import com.kkwakjavacoding.kcalendar.R
 import com.kkwakjavacoding.kcalendar.databinding.ActivityCalorieCalculateBinding
 
 class CalorieCalculateActivity : AppCompatActivity() {
-    lateinit var binding: ActivityCalorieCalculateBinding
+    private lateinit var binding: ActivityCalorieCalculateBinding
     private val activeList = arrayListOf(25, 30, 35, 40)
     private var activeMassValue = activeList[3]
+    private var date = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalorieCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        date = intent.getStringExtra("date")!!
 
         initData()
         radioButtonListener()
@@ -27,12 +30,14 @@ class CalorieCalculateActivity : AppCompatActivity() {
 
         binding.customSaveBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
+            intent.putExtra("date", date)
             savePref()
             startActivity(intent)
         }
 
         binding.customCancelBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
+            intent.putExtra("date", date)
             startActivity(intent)
         }
     }
