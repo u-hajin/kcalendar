@@ -44,6 +44,7 @@ class GraphActivity : AppCompatActivity() {
     private var lineData: LineData = LineData()
     private lateinit var chart: LineChart
     private var date = ""
+    private var graphMonth = 0
     private var minDay = 1f
     private var maxDay = 1f
 
@@ -69,7 +70,9 @@ class GraphActivity : AppCompatActivity() {
         showBaseCalorie()
         showGoal()
 
-        binding.monthSpinner.setSelection(intent.getIntExtra("month", 0) - 1)
+        graphMonth = intent.getIntExtra("month", 0)
+
+        binding.monthSpinner.setSelection(graphMonth - 1)
 
     }
 
@@ -125,12 +128,14 @@ class GraphActivity : AppCompatActivity() {
         binding.kcalCalculateBtn.setOnClickListener {
             val intent = Intent(this, CalorieCalculateActivity::class.java)
             intent.putExtra("date", date)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
 
         binding.goalInfoBtn.setOnClickListener {
             val intent = Intent(this, GoalInputActivity::class.java)
             intent.putExtra("date", date)
+            intent.putExtra("month", graphMonth)
             startActivity(intent)
         }
     }

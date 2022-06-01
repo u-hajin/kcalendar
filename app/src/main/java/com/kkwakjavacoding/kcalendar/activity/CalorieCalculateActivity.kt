@@ -13,13 +13,15 @@ class CalorieCalculateActivity : AppCompatActivity() {
     private val activeList = arrayListOf(25, 30, 35, 40)
     private var activeMassValue = activeList[3]
     private var date = ""
+    private var month = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalorieCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        
         date = intent.getStringExtra("date")!!
+        month = intent.getIntExtra("month", 0)
 
         initData()
         radioButtonListener()
@@ -31,6 +33,7 @@ class CalorieCalculateActivity : AppCompatActivity() {
         binding.customSaveBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", date)
+            intent.putExtra("month", month)
             savePref()
             startActivity(intent)
         }
@@ -38,6 +41,7 @@ class CalorieCalculateActivity : AppCompatActivity() {
         binding.customCancelBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", date)
+            intent.putExtra("month", month)
             startActivity(intent)
         }
     }

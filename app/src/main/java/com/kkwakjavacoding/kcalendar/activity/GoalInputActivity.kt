@@ -11,6 +11,7 @@ import com.kkwakjavacoding.kcalendar.firebase.Nutrition
 class GoalInputActivity : AppCompatActivity() {
     lateinit var binding: ActivityGoalInputBinding
     private var date = ""
+    private var month = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,20 +19,23 @@ class GoalInputActivity : AppCompatActivity() {
         setContentView(binding.root)
         buttonListener()
         date = intent.getStringExtra("date")!!
+        month = intent.getIntExtra("month", 0)
     }
 
     private fun buttonListener() {
 
-        binding.customSaveBtn.setOnClickListener{
+        binding.customSaveBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             insertGoal()
             intent.putExtra("date", date)
+            intent.putExtra("month", month)
             startActivity(intent)
         }
 
-        binding.customCancelBtn.setOnClickListener{
+        binding.customCancelBtn.setOnClickListener {
             val intent = Intent(this, GraphActivity::class.java)
             intent.putExtra("date", date)
+            intent.putExtra("month", month)
             startActivity(intent)
         }
     }
