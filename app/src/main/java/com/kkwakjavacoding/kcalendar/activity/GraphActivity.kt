@@ -124,6 +124,7 @@ class GraphActivity : AppCompatActivity() {
 
         binding.kcalCalculateBtn.setOnClickListener {
             val intent = Intent(this, CalorieCalculateActivity::class.java)
+            intent.putExtra("date", date)
             startActivity(intent)
         }
 
