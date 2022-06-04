@@ -128,7 +128,9 @@ class FoodCustomActivity : AppCompatActivity() {
     private fun showPredictResult() { // 인식 결과를 음식 정보 db에서 찾아 화면에 제공
         foodViewModel.searchName("%$predictResult%").observe(this) {
             if (it.isEmpty()) {
-                Toast.makeText(this, "일치하는 음식이 없습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "일치하는 음식이 없어 '밥'으로 검색됩니다.", Toast.LENGTH_LONG).show()
+                predictResult = "밥"
+                showPredictResult()
             } else {
                 food = it[0].copy()
                 customFood = it[0].copy()
