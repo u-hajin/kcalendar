@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,19 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kcalendar">
         <activity
-            android:name=".activity.FoodCustomActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".activity.CalorieCalculateActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".activity.GraphActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".activity.KcalendarActivity"
+            android:name=".activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,14 +25,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.FoodCustomActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.CalorieCalculateActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.GraphActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.KcalendarActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".activity.FoodEditActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.GoalInputActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
