@@ -17,12 +17,15 @@
 ## Preview
 
 - 사진으로 음식 인식 후 영양정보 제공
+
 ![image](https://user-images.githubusercontent.com/68963707/182405605-e20e950c-dc4f-4e26-a7ae-2f7eed476e5c.png)
 
 - 수동으로 음식 입력 후 영양정보 제공
+
 ![image](https://user-images.githubusercontent.com/68963707/182405492-e2573632-b45f-46ae-b50b-50f5c2089d83.png)
 
 - 섭취량 입력, 염도 및 당도 선택으로 영양정보 커스텀
+
 ![image](https://user-images.githubusercontent.com/68963707/182405658-f05f720c-6ecf-43cf-835a-885e863edb82.png)
 
 ![image](https://user-images.githubusercontent.com/68963707/182405761-fc91eabd-ffa3-48f9-b4a8-6d1845bed17d.png)
@@ -32,5 +35,25 @@
 ![image](https://user-images.githubusercontent.com/68963707/182405900-d6119f5b-6aff-41fc-b942-b8244a3b10e2.png)
 
 - 하루 총 섭취 칼로리, 영양소 계산 및 섭취 부족, 과잉 영양소 파악
+
 ![image](https://user-images.githubusercontent.com/68963707/182406079-945dfc25-8add-4bfd-a755-6cc0ec0f99e9.png)
+
+![image](https://user-images.githubusercontent.com/68963707/182406491-29bf5c22-9020-453b-a2ee-734a4942521e.png)
+
+- 체중 입력 및 월별 체중 변화 그래프 제공
+
+![image](https://user-images.githubusercontent.com/68963707/182406534-467b7de8-e97d-436e-97a0-315864b3cb2a.png)
+
+- 사용자별 권장 칼로리 계산
+
+![image](https://user-images.githubusercontent.com/68963707/182406654-479c7952-09e5-4594-b129-d544486cc739.png)
+
+- 사용자별 하루 섭취 목표 칼로리, 영양소 기록
+
+![image](https://user-images.githubusercontent.com/68963707/182406898-cefab654-90e6-4092-b0a3-1185a2661d62.png)
+
+- 섭취 부족, 과잉 영양정보 알림
+
+![image](https://user-images.githubusercontent.com/68963707/182406994-16daf703-2f0a-4992-aae0-24133f1e6e5e.png)
+
 
